@@ -1,0 +1,33 @@
+<ion-view title="Device" hide-back-button="true" can-swipe-back="false" cache-view="true">
+
+
+    <ion-nav-buttons side="left" ng-click="deviceInformationConfig.viewHandler('home')">
+      <avatar-image></avatar-image>
+    </ion-nav-buttons>
+
+
+
+    <!--ion-nav-buttons side="left">
+        <!--button ng-if="selectedFiles.length" class="button button-icon icon ion-ios-email-outline" ng-click="sendSelectedFilesInEmail()"></button-->
+        <button ng-if="selectedFiles.length" class="button button-icon icon ion-ios-trash-outline" ng-click="deleteSelectedFiles()"></button>
+    </ion-nav-buttons-->
+
+    <!--ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-ios-cloud-upload-outline" ng-if="deviceReady" ng-click="pushToS3()"></button>
+    </ion-nav-buttons-->
+
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-ios-cloud-upload-outline" ng-if="deviceReady && connected" ng-click="pushToS3()"></button>
+      <div class="header-conn-icon" layout="row" layout-align="start center" style="color: white;" ng-if="connected">
+        <i class="icon ion-connection-bars" style="font-size: 20px; margin-right: 10px;"></i>
+      </div>
+    </ion-nav-buttons>
+
+    <ion-nav-title>
+        <span style="font-size: 120%;">Device Data</span>
+    </ion-nav-title>
+
+
+
+    <device-information></device-information>
+</ion-view>

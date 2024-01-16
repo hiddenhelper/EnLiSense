@@ -1,0 +1,36 @@
+
+<ion-content class="has-header has-footer j-grey-content-background">
+  <ion-list can-swipe="true">
+
+    <div class="item item-divider">
+      Labels
+    </div>
+
+    <label class="item item-input">
+      <span class="input-label">Name</span>
+      <input type="text" ng-model="moodAdd.mood.label">
+    </label>
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item j-notes-cont">
+      <textarea rows="5" ng-model="moodAdd.mood.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer-bar class="j-button-footer"
+                layout="row" layout-align="center center"
+                ng-click="moodAdd.mood.label != '' && moodAdd.submit()">
+  <div layout="row" layout-align="center center"
+       class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Add Mood
+    </a>
+  </div>
+</ion-footer-bar>

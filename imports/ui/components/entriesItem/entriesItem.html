@@ -1,0 +1,222 @@
+<ion-content class="j-grey-content-background entries-item-content">
+  <ion-list can-swipe="true">
+
+    <div class="item item-divider">
+      Time
+    </div>
+
+    <ion-item class="item" ng-class="{true: 'j-border-color-red'}[entriesItem.copy === true]">
+      <div layout="row"
+           class="j-item-entry-cont"
+           ng-model="entriesItem.item.entryTimestamp"
+           mobiscroll-datetime="entriesItem.datetimeSettings"
+           mobiscroll-instance="datetimeInstance">
+        <div flex="10">
+          <i class="ion-ios-clock-outline j-item-entry-icon"></i>
+        </div>
+        <div flex="40" class="j-item-entry-time">
+          {{entriesItem.item.entryTimestamp | displayTimeFilter}}
+        </div>
+        <div flex="50" class="j-item-entry-date">
+          {{entriesItem.item.entryTimestamp | displayDateFilter}}
+        </div>
+      </div>
+    </ion-item>
+
+    <div class="item item-divider" ng-if="entriesItem.type === 'Food'">
+      Meal
+    </div>
+
+    <ion-item class="item j-item-meal-cont" ng-if="entriesItem.type === 'Food'">
+      <div layout="row" layout-align="space-around center" >
+        <div id="Breakfast" flex="22" class="j-item-label-button"
+             ng-click="entriesItem.item.meal = 'Breakfast'"
+             ng-class="{ 'j-item-label-button-clicked' : entriesItem.item.meal === 'Breakfast'}">
+          Breakfast
+        </div>
+        <div id="Lunch" flex="22" class="j-item-label-button"
+             ng-click="entriesItem.item.meal = 'Lunch'"
+             ng-class="{ 'j-item-label-button-clicked' : entriesItem.item.meal === 'Lunch'}">
+          Lunch
+        </div>
+        <div id="Dinner" flex="22" class="j-item-label-button"
+             ng-click="entriesItem.item.meal = 'Dinner'"
+             ng-class="{ 'j-item-label-button-clicked' : entriesItem.item.meal === 'Dinner'}">
+          Dinner
+        </div>
+        <div id="Snack" flex="22" class="j-item-label-button"
+             ng-click="entriesItem.item.meal = 'Snack'"
+             ng-class="{ 'j-item-label-button-clicked' : entriesItem.item.meal === 'Snack'}">
+          Snack
+        </div>
+      </div>
+    </ion-item>
+
+    <label class="item item-input item-select" ng-if="entriesItem.type === 'Exercise'">
+      <label>
+        <div class="input-label" style="min-width: 340px;">Type</div>
+        <select mobiscroll-select="entriesItem.scrollerSettings"
+                placeholder="{{ entriesItem.item.exerciseType }}"
+                mobiscroll-instance="Sample"
+                ng-model="entriesItem.item.exerciseType">
+          <option ng-repeat="st in entriesItem.exerciseOptions"
+                  value="{{ st.label }}">
+            {{ st.label }}
+          </option>
+        </select>
+      </label>
+    </label>
+
+    <label class="item item-input" ng-if="entriesItem.type === 'Exercise'">
+      <span class="input-label">Intensity</span>
+      <input type="text"
+             ng-model="entriesItem.item.intensity"
+             mobiscroll-select="entriesItem.selectScollerSettingsI"
+             mobiscroll-instance="selectScroller2"/>
+    </label>
+    <label class="item item-input" ng-if="entriesItem.type === 'Exercise'">
+      <span class="input-label">Duration [min]</span>
+      <input type="text" ng-model="entriesItem.item.duration"/>
+    </label>
+
+    <div class="item item-divider" ng-if="entriesItem.type !== 'Event'">
+      Items
+    </div>
+
+    <!-- new entry -->
+    <ion-item class="item j-item-new-cont" ng-if="entriesItem.type !== 'Event'">
+      <div layout="row"
+           layout-align="center center"
+           class="j-item-new-button"
+           ng-click="entriesItem.viewHandler('entriesSearch',{searchTerm: '', type: entriesItem.type})">
+        <div flex="100">
+          <i class="icon ion-plus"></i>
+        </div>
+      </div>
+    </ion-item>
+
+    <div class="item item-divider" ng-if="entriesItem.type === 'Event'">
+      Type
+    </div>
+
+    <label class="item item-input item-select" ng-if="entriesItem.type === 'Event'">
+      <label>
+        <div class="input-label" style="min-width: 340px;">Sample Collected</div>
+        <select mobiscroll-select="entriesItem.scrollerSettings"
+                placeholder="{{ entriesItem.item.sampleCollected }}"
+                mobiscroll-instance="Sample"
+                ng-model="entriesItem.item.sampleCollected">
+          <option ng-repeat="st in entriesItem.sampleCollectedOptions"
+                  value="{{ st.label }}">
+            {{ st.label }}
+          </option>
+        </select>
+      </label>
+    </label>
+
+    <label class="item item-input" ng-if="entriesItem.type === 'Event'">
+      <label>
+        <div class="input-label" style="min-width: 340px;">Collection Method</div>
+        <textarea rows="5" ng-model="entriesItem.item.collectionMethods"></textarea>
+      </label>
+    </label>
+
+    <label class="item item-input" ng-if="entriesItem.type === 'Event'">
+      <label>
+        <div class="input-label" style="min-width: 340px;">Post Collection Storage and Delivery to Lab</div>
+        <textarea rows="5" ng-model="entriesItem.item.collectionStorage"></textarea>
+      </label>
+    </label>
+
+    <label class="item item-input item-select" ng-if="entriesItem.type === 'Event'">
+      <div layout="row" class="entry"
+           ng-model="entriesItem.item.deliveredToLabDate"
+           mobiscroll-datetime="entriesItem.datetimeSettings"
+           mobiscroll-instance="datetimeInstance"
+           style="min-width: 100%">
+        <div flex="50" class="entry-text" layout="row" layout-align="start center" >
+          <p style="font-size: 16px; color: #444; padding: 7px 10px 7px 0px;">
+          Delivered to Lab Date:
+          </p>
+        </div>
+        <div flex="40"
+             layout="row" layout-align="end center"
+             class="j-sleep-entry-date">
+          <p>
+          {{entriesItem.item.deliveredToLabDate | displayDateFilter}}
+          </p>
+        </div>
+      </div>
+    </label>
+
+    <!-- template -->
+    <div ng-repeat="val in entriesItem.item.selected track by $index">
+      <ion-item class="item j-item-item-cont">
+        <div layout="row" layout-align="center center" class="j-item-item-row">
+          <div flex="5">
+          </div>
+          <div flex="85" class="j-item-item-label" ng-if="val.brand.trim() !== '' && val.brand !== undefined">
+            {{ val.name }} ({{ val.brand }})
+          </div>
+          <div flex="85" class="j-item-item-label" ng-if="val.brand.trim() === '' || val.brand === undefined">
+            {{ val.name }}
+          </div>
+          <div flex="10"
+               class="item-icon-right j-item-item-arrow-cont"
+               ng-click="entriesItem.viewHandler('entryDetails',{_id: val._id, type: entriesItem.type})">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
+
+        <ion-option-button class="j-item-item-delete-cont" ng-click="entriesItem.removeContentsFromItem(val._id)">
+          <div class="j-item-item-delete-row"  layout="row" layout-align="center center">
+            <i class="icon ion-ios-trash-outline" style="vertical-align:middle; margin-left: 10px; margin-right: 10px;"><span style="margin-left: 10px; min-height:100%;">Delete</span></i>
+          </div>
+        </ion-option-button>
+      </ion-item>
+    </div>
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item j-notes-cont">
+      <textarea rows="5" ng-model="entriesItem.item.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+<ion-footer-bar class="j-button-footer">
+
+  <!-- Existing Item -->
+  <div ng-if="entriesItem._id !== undefined && entriesItem.copy === false"
+       class="j-button-cont j-button-cont-half j-button-cont-red"
+       layout="row" layout-align="center center"
+       ng-click="entriesItem.drop()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-ios-trash-outline j-button-icon"></i>
+      Delete
+    </a>
+  </div>
+  <div ng-if="entriesItem._id !== undefined && entriesItem.copy === false"
+       class="j-button-cont j-button-cont-half j-button-cont-green"
+       layout="row" layout-align="center center"
+       ng-click="entriesItem.update()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Update
+    </a>
+  </div>
+
+  <!-- New Item -->
+  <div ng-if="entriesItem._id === undefined || entriesItem.copy === true"
+       ng-click="entriesItem.submit()"
+       layout="row" layout-align="center center"
+       class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Submit
+    </a>
+  </div>
+</ion-footer-bar>

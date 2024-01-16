@@ -1,0 +1,92 @@
+<ion-content class="has-header has-footer j-grey-content-background device-information-item" >
+
+    <!--div class="item item-divider" ng-if="deviceInformation.device && connected || reports && connected" >
+        <div class="button-bar">
+            <button class="button icon-left ion-battery-charging" style="font-size:70%;">{{deviceInformation.battery}}</button>
+            <button class="button icon-left ion-radio-waves" style="font-size:70%;">{{deviceInformation.rssi}}</button>
+        </div>
+    </div-->
+
+    <div class="j-no-res-warn-cont" ng-if="!deviceInformation.device && !reports && connected">
+      <div class="j-no-res-warn-icon-cont j-no-res-warn-icon">
+        <i class="icon ion-ios-pulse"></i>
+      </div>
+      <div class="j-no-res-warn-message-cont">
+        <p class="j-no-res-warn-message-header">
+          Please add a device to continue
+        </p>
+      </div>
+    </div>
+
+    <div class="j-no-res-warn-cont animate-if" ng-if="deviceInformation.loadingInfo === true && connected">
+      <div>
+        <div>
+            <img class="j-loader" ng-src="/img/loader.gif" />
+        </div>
+      </div>
+      <div class="j-no-res-warn-message-cont">
+        <p class="j-no-res-warn-message-header">
+          {{ deviceInformation.loaderMessage }}
+        </p>
+      </div>
+    </div>
+
+    <!--ion-refresher
+            enabled="deviceReady"
+            pulling-text="Pull to sync data from device"
+            on-refresh="doRefresh()"
+            ng-if="deviceInformation.loadingInfo !== true && deviceInformation.rssi !== '-'">
+    </ion-refresher-->
+    <!--div ng-if="deviceInformation.loadingInfo !== true">
+      <div layout="row">
+        <div class="list items-list-div">
+          <div ng-repeat="d in deviceInformation.testData">
+            {{ d }}
+          </div>
+        </div>
+      </div>
+    <div-->
+    <div ng-repeat="report in reports" class="item-icon-right item-icon-left item" ng-if="deviceInformation.loadingInfo !== true && reports && connected">
+        <ion-checkbox class="device-information-checkbox icon" ng-model="report.checked"></ion-checkbox>
+        {{report.header}}
+        <i ng-class="{'disable-report-icon': !report.hasOutput }" class="icon ion-ios-pulse" style="cursor: pointer" ng-click="goToReport(report)"></i>
+    </div>
+
+    <!--div ng-click="newReport()"
+         layout="row" layout-align="center center"
+         class="j-button j-button-cont j-button-cont-full j-button-cont-green "
+         style="min-height: 44px;"
+         ng-if="deviceInformation.loadingInfo !== true && deviceInformation.deviceReady && deviceInformation.device">
+      <a class="j-button-text">
+        <i class="icon ion-android-sync j-button-icon"></i>
+        Sync
+      </a>
+    </div-->
+
+    <div class="j-no-res-warn-cont-reports" ng-if="!deviceInformation.device && reports && connected">
+      <div class="j-no-res-warn-icon-cont j-no-res-warn-icon">
+        <i class="icon ion-ios-pulse"></i>
+      </div>
+      <div class="j-no-res-warn-message-cont">
+        <p class="j-no-res-warn-message-header">
+          Please add a device to sync
+        </p>
+      </div>
+    </div>
+
+    <div ng-if="!connected" class="animate-if">
+      <offline-message></offline-message>
+    </div>
+
+</ion-content>
+<ion-footer-bar class="j-button-footer j-button-footer-up"
+                ng-click="newReport()"
+                ng-if="deviceInformation.loadingInfo !== true && deviceInformation.deviceReady && deviceInformation.device && connected"
+                layout="row" layout-align="center center">
+    <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green">
+        <a class="j-button-text">
+            <i class="icon ion-android-sync j-button-icon"></i>
+            Sync
+        </a>
+    </div>
+</ion-footer-bar>

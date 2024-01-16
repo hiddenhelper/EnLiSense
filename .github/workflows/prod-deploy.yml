@@ -1,0 +1,44 @@
+name: Deploy prod
+on:
+  release:
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - uses: meteorengineer/setup-meteor@v1
+      with:
+        meteor-release: '2.5'
+        
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        
+    - name: Generate deployment build
+      run:
+        npm install . --production &&
+        meteor build --server-only --directory ../app/ --server "https://prod.enlisense-app.com" &&
+        cd ../app/bundle/programs/server && npm install --production
+
+    - name: create package.json
+      run:
+        cp dev-package.json ../app/bundle/package.json
+
+    - name: package build
+      run:
+        cd ../app/bundle &&
+        zip -r --symlinks enlisense-prod.zip .
+
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v16
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: Enlisense-prod
+        environment_name: Enlisenseprod-env
+        version_label: ${{ github.sha }}
+        region: us-east-1
+        deployment_package: ../app/bundle/enlisense-prod.zip

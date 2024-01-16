@@ -1,0 +1,215 @@
+<ion-content class="j-grey-content-background vitals-item-content">
+  <ion-list>
+
+    <div class="item item-divider">
+      Time
+    </div>
+
+    <ion-item class="item" ng-class="{true: 'j-border-color-red'}[vitalsItem.copy === true]">
+      <div layout="row"
+           class="j-item-entry-cont"
+           ng-model="vitalsItem.item.entryTimestamp"
+           mobiscroll-datetime="vitalsItem.datetimeSettings"
+           mobiscroll-instance="datetimeInstance">
+        <div flex="10">
+          <i class="ion-ios-clock-outline j-item-entry-icon"></i>
+        </div>
+        <div flex="40" class="j-item-entry-time">
+          {{vitalsItem.item.entryTimestamp | displayTimeFilter}}
+        </div>
+        <div flex="50" class="j-item-entry-date">
+          {{vitalsItem.item.entryTimestamp | displayDateFilter}}
+        </div>
+      </div>
+    </ion-item>
+
+    <div class="item item-divider">
+      Stats
+    </div>
+
+    <ion-item class="item item-icon-right j-item-vitals-cont">
+      <div layout="row" layout-align="center center" class="j-item-vitals-cont"
+           ng-model="vitalsItem.item.bloodPressure.bloodPressureSystolic"
+           mobiscroll-numpad="vitalsItem.systolicNumpadSettings"
+           mobiscroll-instance="systolicNumpadInstance" >
+        <div flex="60" class="j-item-vitals-label">
+          Blood Pressure (Systolic)
+        </div>
+        <div flex-offset="5" flex="10">
+          <div flex class="j-item-vitals-bp-cont">
+            <div class="j-item-vitals-bp-label">{{ vitalsItem.item.bloodPressure.bloodPressureSystolic }}</div>
+          </div>
+        </div>
+        <div flex-offset="5" flex="20" class="j-item-vitals-metric">
+          mm Hg
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item class="item item-icon-right j-item-vitals-cont">
+      <div layout="row" layout-align="center center" class="j-item-vitals-cont"
+           ng-model="vitalsItem.item.bloodPressure.bloodPressureDiastolic"
+           mobiscroll-numpad="vitalsItem.diastolicNumpadSettings"
+           mobiscroll-instance="diastolicNumpadInstance" >
+        <div flex="60" class="j-item-vitals-label">
+          Blood Pressure (Diastolic)
+        </div>
+        <div flex-offset="5" flex="10">
+          <div flex class="j-item-vitals-bp-cont">
+            <div class="j-item-vitals-bp-label">{{ vitalsItem.item.bloodPressure.bloodPressureDiastolic }}</div>
+          </div>
+        </div>
+        <div flex-offset="5" flex="20" class="j-item-vitals-metric">
+          mm Hg
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item class="item item-icon-right j-item-vitals-cont">
+      <div layout="row" layout-align="center center" class="j-item-vitals-cont"
+           ng-model="vitalsItem.item.heartRate"
+           mobiscroll-numpad="vitalsItem.heartRateNumpadSettings"
+           mobiscroll-instance="heartRateNumpadInstance" >
+        <div flex="60" class="j-item-vitals-label">
+          Heart Rate
+        </div>
+        <div flex-offset="5" flex="10">
+          <div flex class="j-item-vitals-hr-cont">
+            <div class="j-item-vitals-hr-input">{{ vitalsItem.item.heartRate }}</div>
+          </div>
+        </div>
+        <div flex-offset="5" flex="20" class="j-item-vitals-metric">
+          bpm
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item class="item item-icon-right j-item-vitals-cont">
+      <div layout="row" layout-align="center center"
+           class="j-item-vitals-cont"
+           ng-model="vitalsItem.item.height"
+           mobiscroll-scroller="vitalsItem.heightScrollerSettings"
+           mobiscroll-instance="heightScrollerInstance" >
+        <div flex="40" class="j-item-vitals-label">
+          Height
+        </div>
+        <div flex="10">
+          <div flex class="j-item-vitals-ht-feet-cont">
+            <div class="j-item-vitals-ht-feet-label">{{ vitalsItem.item.height.heightFeet }}</div>
+          </div>
+        </div>
+        <div flex-offset="5" flex="10" class="j-item-vitals-metric">
+          feet
+        </div>
+        <div flex="10">
+          <div flex class="j-item-vitals-ht-inches-cont">
+            <div class="j-item-vitals-ht-inches-label">{{ vitalsItem.item.height.heightInches }}</div>
+          </div>
+        </div>
+        <div flex-offset="5" flex="20" class="j-item-vitals-metric">
+          inches
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item class="item item-icon-right j-item-vitals-cont">
+      <div layout="row" layout-align="center center" class="j-item-vitals-cont"
+           ng-model="vitalsItem.item.weight"
+           mobiscroll-numpad="vitalsItem.weightNumpadSettings"
+           mobiscroll-instance="weightNumpadInstance" >
+        <div flex="40" class="j-item-vitals-label">
+          Weight
+        </div>
+        <div flex-offset="25" flex="10">
+          <div flex class="j-item-vitals-wt-cont">
+            <div class="j-item-vitals-wt-label">{{ vitalsItem.item.weight }}</div>
+          </div>
+        </div>
+        <div flex-offset="5" flex="20" class="j-item-vitals-metric">
+          lbs
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item class="item item-icon-right j-item-vitals-cont" ng-if="vitalsItem.displayPreferences.celsius === true">
+      <div layout="row" layout-align="center center" class="j-item-vitals-cont"
+           ng-model="vitalsItem.item.temperature"
+           mobiscroll-numpad="vitalsItem.temperatureNumpadSettings"
+           mobiscroll-instance="temperatureNumpadInstance" >
+        <div flex="40" class="j-item-vitals-label">
+          Fever/Temperature
+        </div>
+        <div flex-offset="25" flex="10">
+          <div flex class="j-item-vitals-wt-cont">
+            <div class="j-item-vitals-wt-label">{{ vitalsItem.item.temperature | displayFtoCFilter}}</div>
+          </div>
+        </div>
+        <div flex-offset="5" flex="20" class="j-item-vitals-metric">
+          &#8451;
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item class="item item-icon-right j-item-vitals-cont" ng-if="vitalsItem.displayPreferences.celsius !== true">
+      <div layout="row" layout-align="center center" class="j-item-vitals-cont"
+           ng-model="vitalsItem.item.temperature"
+           mobiscroll-numpad="vitalsItem.temperatureNumpadSettings"
+           mobiscroll-instance="temperatureNumpadInstance" >
+        <div flex="40" class="j-item-vitals-label">
+          Fever/Temperature
+        </div>
+        <div flex-offset="25" flex="10">
+          <div flex class="j-item-vitals-wt-cont">
+            <div class="j-item-vitals-wt-label">{{ vitalsItem.item.temperature }}</div>
+          </div>
+        </div>
+        <div flex-offset="5" flex="20" class="j-item-vitals-metric">
+          &#8457;
+        </div>
+      </div>
+    </ion-item>
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item j-notes-cont">
+      <textarea rows="5" ng-model="vitalsItem.item.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+
+<ion-footer-bar class="j-button-footer">
+
+  <!-- Existing Item -->
+  <div ng-if="vitalsItem._id !== undefined && vitalsItem.copy === false"
+       class="j-button-cont j-button-cont-half j-button-cont-red"
+       layout="row" layout-align="center center"
+       ng-click="vitalsItem.drop()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-ios-trash-outline j-button-icon"></i>
+      Delete
+    </a>
+  </div>
+  <div ng-if="vitalsItem._id !== undefined && vitalsItem.copy === false"
+       class="j-button-cont j-button-cont-half j-button-cont-green"
+       layout="row" layout-align="center center"
+       ng-click="vitalsItem.update()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Update
+    </a>
+  </div>
+
+  <div ng-if="vitalsItem._id === undefined || vitalsItem.copy === true"
+       ng-click="vitalsItem.submit()"
+       layout="row" layout-align="center center"
+       class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Submit
+    </a>
+  </div>
+</ion-footer-bar>

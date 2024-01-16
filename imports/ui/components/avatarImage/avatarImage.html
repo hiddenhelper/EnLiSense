@@ -1,0 +1,4 @@
+<div class="header-avatar" layout="row" layout-align="start center">
+  <img ng-if="avatarImage.imageData === undefined" src="/img/avatar-placeholder.png">
+  <img ng-if="avatarImage.imageData !== undefined" ng-src="{{ avatarImage.imageData }}" onerror="this.onerror=null;this.src='/img/avatar-placeholder.png';">
+</div>

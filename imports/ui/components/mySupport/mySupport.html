@@ -1,0 +1,28 @@
+<!--current-date-display today="mySupport.currentDate"></current-date-display-->
+
+<ion-content class="has-header has-footer" [ngClass]="{'has-footer': true}">
+
+  <div class="j-card-list">
+
+    <div ng-repeat="entry in mySupport.support" class="list card">
+      <div class="item item-body" index=1>
+        <img class="full-image" src="{{entry.image}}">
+        <h2>{{ entry.title }}</h2>
+        <p>{{ entry.subtitle }}</p>
+
+        <a class="button button-postive" href="#" ng-click="open(entry.readmorelink)">
+          READ MORE
+        </a>
+
+        <p ng-click="likeHandler(entry._id.valueOf())" >
+          <i ng-if="!likeList[entry._id.valueOf()] || likeList[entry._id.valueOf()] === false" class="ion-ios-heart-outline" style="font-size: 200%"></i>
+          <i ng-if="likeList[entry._id.valueOf()] === true" class="ion-ios-heart" style="font-size: 200%"></i>
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+
+
+</ion-content>

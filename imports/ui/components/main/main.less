@@ -1,0 +1,310 @@
+html {
+  //font-family: 'Roboto', sans-serif;
+  //-webkit-font-smoothing: antialiased;
+  //-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@font-face {
+  font-family: 'neuropoliticalregular';
+  src: url('/fonts/neuropolitical/neuropolitical_rg-webfont.woff2') format('woff2'),
+  url('/fonts/neuropolitical/neuropolitical_rg-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  position: static;
+  position: var(--screen-position, static);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  height: 100vh;
+  height: calc(100vh + var(--screen-scroll-padding, 0px));
+  width: 100vw;
+}
+
+
+div {
+  outline: none;
+}
+
+.virtualScreen {
+  display: flex;
+  position: absolute;
+  top: 0;
+  top: var(--screen-top, 0px);
+  right: 0;
+  right: var(--screen-right, 0px);
+  bottom: 0;
+  bottom: var(--screen-bottom, 0px);
+  left: 0;
+  left: var(--screen-left, 0px);
+  height: 100vh;
+  height: var(--screen-height, 100vh);
+  width: 100vw;
+  width: var(--screen-width, 100vw);
+  overflow: hidden;
+  transform: none; /* limits children with position fixed */
+  transform: var(--screen-transform, none);
+  box-shadow: none;
+  box-shadow: var(--screen-box-shadow, none);
+}
+
+.virtualScreenChild {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.virtualScreenChild:empty {
+  display: none;
+}
+
+main {
+
+  .bar.bar-dark {
+    border-color:#3498db;
+    background-color:#3498db;
+    background-image:linear-gradient(0deg, #3498db, #3498db 50%, transparent 50%);;
+  }
+
+  .bar-dark .button {
+    border-color:#3498db;
+    background-color:#3498db;
+  }
+
+  .bar-dark .button.activated {
+    border-color:#3498db;
+    background-color:#3498db;
+  }
+
+}
+
+ion-nav-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+[nav-view-transition="ios"][nav-view-direction="forward"], [nav-view-transition="ios"][nav-view-direction="back"] {
+  background-color: transparent;
+}
+
+.header-back-button  {
+  color: white !important;
+  margin-left: 12px !important;
+  font-size: 14px !important;
+}
+
+
+/*
+  *** Globals ***
+*/
+
+// Items background
+.j-grey-content-background {
+  padding: 0px 0px 0px 0px;
+  background-color: #ecf0f1;
+}
+
+// red styling for timestamp on copy items
+.j-border-color-red {
+  color: #db3445 !important;
+  background-color: rgba(219, 52, 69, 0.2) !important;
+}
+
+// Item entry container
+.j-item-entry-cont {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.j-item-entry-icon {
+  font-size: 24px;
+}
+.j-item-entry-time {
+
+}
+.j-item-entry-date {
+  text-align: right;
+}
+
+// Item new button
+.j-item-new-cont {
+  padding: 0px 0px 0px 0px !important;
+}
+.j-item-new-button {
+  min-height: 35px;
+  text-align: center;
+  background-color: #adaeae;
+  color: white;
+}
+
+// Footer buttons
+.j-button-footer {
+  padding: 0px 0px 0px 0px !important;
+  min-width: 100%;
+}
+
+.j-button-cont {
+  min-height: 100%;
+  text-align: center;
+}
+.j-button-cont-full {
+  min-width: 100%;
+}
+.j-button-cont-half {
+  min-width: 50%;
+}
+.j-button-cont-green {
+  background: #34db77;
+}
+
+.j-button-cont-red {
+  background: #db3445;
+}
+
+.j-button-cont-gray {
+  background: #828282;
+}
+
+.j-button-text {
+  color: #fff;
+}
+
+.j-button-icon {
+  margin-right: 10px;
+  color: #fff;
+}
+
+// Notes area
+.j-notes-cont {
+  min-width: 100%;
+  min-height: 60px;
+}
+
+.j-notes-cont textarea {
+  min-width: 100%;
+}
+
+.j-header-copy-button {
+
+}
+
+// Now button on scroller
+.now-btn {
+  height: 2.75em;
+  line-height: 2.75em;
+  padding: 0 .625em;
+  display: inline-block;
+  color: #007aff;
+  font-size: 1.333334em;
+}
+
+// Color coding
+.j-background-red {
+  background-color: #db3445;
+}
+.j-color-red {
+  color: #db3445;
+}
+
+.j-background-blue {
+  background-color: #3498db;
+}
+.j-color-blue {
+  color: #3498db;
+}
+
+.j-background-gray {
+  background-color: #828282;
+}
+.j-color-gray {
+  color: #828282;
+}
+
+.j-background-green {
+  background-color: #34db77;
+}
+.j-color-green {
+  color: #34db77;
+}
+
+.j-background-lightblue {
+  background-color: #34dbcb;
+}
+.j-color-lightblue {
+  color: #34dbcb;
+}
+
+.j-background-yellow {
+  background-color: #dbcb34;
+}
+.j-color-yellow {
+  color: #dbcb34;
+}
+
+.j-background-black {
+  background-color: #000000;
+}
+.j-color-black {
+  color: #000000;
+}
+
+.j-background-purple {
+  background-color: #db3498;
+}
+.j-color-purple {
+  color: #db3498;
+}
+
+.j-background-brown {
+  background-color: #db7734;
+}
+.j-color-brown {
+  color: #db7734;
+}
+
+input[disabled], select[disabled], textarea[disabled], input[readonly]:not(.cloned-text-input), textarea[readonly]:not(.cloned-text-input), select[readonly] {
+  background-color: #ffffff !important;
+}
+
+@import "../auth/auth.less";
+@import "../journal/journal.less";
+
+@import "../passwordReset/passwordReset.less";
+@import "../more/more.less";
+@import "../tabs/tabs.less";
+@import "../search/search.less";
+@import "../insightsList/insightsList.less";
+
+@import "../home/home.less";
+@import "../mySupport/mySupport.less";
+@import "../clinician/clinician.less";
+
+@import "../offlineMessage/offlineMessage.less";
+@import "../noResultsMessage/noResultsMessage.less";
+@import '../symptomsList/symptomsList.less';
+@import '../moodsList/moodsList.less';
+@import '../sleepItem/sleepItem.less';
+@import '../vitalsItem/vitalsItem.less';
+
+@import '../entryAdd/entryAdd.less';
+@import '../entriesItem/entriesItem.less';
+@import '../entriesSearch/entriesSearch.less';
+@import '../entryDetails/entryDetails.less';
+
+@import '../deviceDetails/deviceDetails.less';
+@import '../deviceAdd/deviceAdd.less';
+@import '../bluetoothList/bluetoothList.less';
+
+@import '../userFeedback/userFeedback.less';
+@import '../temperatureEdit/temperatureEdit.less';

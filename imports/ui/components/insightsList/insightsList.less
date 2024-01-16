@@ -1,0 +1,159 @@
+insights-list {
+
+  .tsb-ic-wrp {
+    top: 0;
+  }
+
+  .tsb-ic-wrp {
+    margin-right: 10px;
+  }
+
+  .tabbed-slidebox .tsb-icons a {
+    font-size: 25px;
+  }
+
+  .tabbed-slidebox .tsb-icons a.active {
+    font-size: 28px;
+    color: #3498db; // color of active icon
+  }
+
+  .tabbed-slidebox .tsb-icons {
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+  }
+
+  .tabbed-slidebox .slider-slide {
+    background-color: #3498db;
+  }
+
+  .button-icon {
+
+  }
+
+  .slide-label {
+    color: white;
+    margin: 4px 0px 4px 0px;
+  }
+
+  .repeated-item {
+    position: relative;
+  }
+
+  .tabbed-slidebox .tsb-icons:after {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0.6em 0.6em 0.6em;
+      border-color: transparent transparent #3498db transparent;
+      position: absolute;
+      content: "";
+      display: block;
+      bottom: -12px;
+      left: 50%;
+      margin-left: -8px;
+  }
+
+
+  .info-container {
+    min-width: 30px;
+    min-height: 30px;
+    padding-left: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 3px;
+    margin-right: 10px;
+    z-index: 5;
+    font-size: 16px;
+  }
+
+  .items-list-div {
+    min-width: 100%;
+  }
+
+  .items-list-time {
+    text-align: left;
+    font-size: 12px;
+    margin-left: 10px;
+    font-weight: normal;
+  }
+
+  .items-list-icon {
+    margin-left: 10px;
+    font-size: 35px;
+    color: #3498db;
+  }
+
+  .items-list-chevron-right {
+    font-size: 12px;
+  }
+
+  .item {
+    border-width: 0px;
+
+  }
+
+  .ion-ios-close-empty {
+    font-size: 28px;
+  }
+
+  /*
+    We're using CSS transitions for when
+    the enter and move events are triggered
+    for the element that has the .repeated-item
+    class
+  */
+  .repeated-item.ng-enter, .repeated-item.ng-move {
+    transition: all 0.5s linear;
+    opacity: 0;
+  }
+
+  /*
+   The ng-enter-active and ng-move-active
+   are where the transition destination properties
+   are set so that the animation knows what to
+   animate.
+  */
+  .repeated-item.ng-enter.ng-enter-active,
+  .repeated-item.ng-move.ng-move-active {
+    opacity: 1;
+  }
+
+  /*
+    We're using CSS keyframe animations for when
+    the leave event is triggered for the element
+    that has the .repeated-item class
+  */
+  .repeated-item.ng-leave {
+    animation: 0.5s my_animation;
+  }
+
+  @keyframes my_animation {
+    from { opacity:1; }
+    to { opacity:0; }
+  }
+
+  .message {
+    word-wrap: normal;
+    overflow: visible;
+    text-overflow: initial;
+    white-space: normal;
+  }
+
+
+  .animate-if.ng-enter, .animate-if.ng-leave {
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  }
+
+  .animate-if.ng-enter,
+  .animate-if.ng-leave.ng-leave-active {
+    opacity:0;
+  }
+
+  .animate-if.ng-leave,
+  .animate-if.ng-enter.ng-enter-active {
+    opacity:1;
+  }
+
+}

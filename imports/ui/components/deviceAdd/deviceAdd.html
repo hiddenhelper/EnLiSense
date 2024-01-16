@@ -1,0 +1,203 @@
+
+<ion-content class="has-header j-grey-content-background" [ngClass]="{'has-footer': deviceAdd.loading === true}">
+
+  <div class="j-no-res-warn-cont animate-if" ng-if="deviceAdd.loading === true">
+    <div>
+      <div>
+          <img class="j-loader" ng-src="/img/loader.gif" />
+      </div>
+    </div>
+    <div class="j-no-res-warn-message-cont">
+      <p class="j-no-res-warn-message-header">
+        Loading device details ...
+      </p>
+    </div>
+  </div>
+
+  <div class="j-no-res-warn-cont animate-if" ng-if="deviceAdd.reset === true">
+    <div>
+      <div>
+          <img class="j-loader" ng-src="/img/loader.gif" />
+      </div>
+    </div>
+    <div class="j-no-res-warn-message-cont">
+      <p class="j-no-res-warn-message-header">
+        {{ deviceAdd.loaderMessage }}
+      </p>
+    </div>
+  </div>
+
+  <ion-list can-swipe="true" ng-if="deviceAdd.loading !== true && deviceAdd.reset !== true">
+
+    <div class="item item-divider" ng-if="cordova">
+      QR Code Reader
+    </div>
+
+    <label class="item item-input item-range" ng-if="cordova" ng-click="deviceAdd.scanQRCode()">
+      <div layout="row" layout-align="center center" class="item-container qr-code-container">
+        <i class="icon ion-ios-qr-scanner-outline qr-code-icon"></i>
+      </div>
+    </label>
+
+    <div class="item item-divider">
+      Details
+    </div>
+
+    <!--label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Name</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.name"/>
+        </div>
+      </div>
+    </label-->
+
+    <!--label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Study ID</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.studyID"/>
+        </div>
+      </div>
+    </label-->
+
+    <label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Device ID</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.deviceID"/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Device Address</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.deviceAddress"/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Device Name</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.deviceName"/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Firmware ID</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.firmwareID"/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Sensor ID</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.sensorID"/>
+        </div>
+      </div>
+    </label>
+
+    <!--label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Date</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.date"/>
+        </div>
+      </div>
+    </label-->
+
+    <label class="item item-input item-select" style="padding: 6px 0px 5px 0px;">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Location</span>
+        </div>
+        <div flex="50">
+          <input type="text"
+                 ng-model="deviceAdd.$state.device.location"
+                 mobiscroll-scroller="deviceAdd.locationSettings"
+                 mobiscroll-instance="locationScrollerInstance" >
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Sensor 1</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.sensor1"/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Sensor 2</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.sensor2"/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Sensor 3</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.sensor3"/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Sensor 4</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceAdd.$state.device.sensor4"/>
+        </div>
+      </div>
+    </label>
+
+
+  </ion-list>
+</ion-content>
+
+<ion-footer-bar ng-if="deviceAdd.loading !== true && deviceAdd.reset !== true" class="j-button-footer" ng-click="deviceAdd.$state.device.deviceAddress != '' && deviceAdd.add()" layout="row" layout-align="center center">
+  <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Done
+    </a>
+  </div>
+</ion-footer-bar>

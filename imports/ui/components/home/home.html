@@ -1,0 +1,85 @@
+<!--current-date-display today="home.currentDate"></current-date-display-->
+
+<ion-content class="has-header has-footer" [ngClass]="{'has-footer': true}">
+
+  <div class="j-home-cont" style="padding-top: 80px;">
+    <p class="j-home-cont-message-header">
+      Hello {{ home.username }}
+    </p>
+  </div>
+  <!--div class="j-home-cont">
+    <div class="j-no-res-warn-icon-cont">
+      <i class="icon ion-ios-person-outline"></i>
+    </div>
+  </div-->
+  <div class="j-home-cont" style="padding-top: 50px;">
+    <div class="owl-carousel">
+      <div  style="width: 365px;">
+        </br>
+        <h4>My Device</h4>
+        <p>Setup up your sensor device to get started</p>
+        </br>
+      </div>
+      <div style="width: 365px">
+        </br>
+        <h4>My Reports</h4>
+        <p>See your current trends and recommendations</p>
+        </br>
+      </div>
+      <div style="width: 365px">
+        </br>
+        <h4>My Journal</h4>
+        <p>Track your food, drinks, exercise and other factors</p>
+        </br>
+      </div>
+      <div style="width: 365px">
+        </br>
+        <h4>My Support</h4>
+        <p>Up to date information customized to your health</p>
+        </br>
+      </div>
+    </div>
+  </div>
+  <div class="j-home-cont" style="padding-top: 80px;">
+
+      <div class="row">
+        <div class="col">
+          <button class="button button-full button-positive" ng-click="home.viewHandler('deviceDetails')">
+            <i class="icon ion-ios-gear-outline j-button-icon-home"></i>
+            <p>
+              My Device
+            </p>
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-full button-positive" ng-click="home.viewHandler('report')">
+            <i class="icon ion-ios-pulse-outline j-button-icon-home"></i>
+            <p>
+              My Reports
+            </p>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="button button-full button-positive" ng-click="home.viewHandler('journal')">
+            <i class="icon ion-ios-calendar-outline j-button-icon-home" style="font-size: 150px;"></i>
+            <p>
+              My Journal
+            </p>
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-full button-positive" ng-click="home.viewHandler('mySupport')">
+            <i class="icon ion-ios-medical-outline j-button-icon-home"></i>
+            <p>
+              My Support
+            </p>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>

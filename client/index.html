@@ -1,0 +1,56 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover"-->
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />`
+
+  <base href="/">
+  <title>EnLiSense</title>
+  <!--link href="https://fonts.googleapis.com/css?family=Caveat&amp;subset=latin-ext" rel="stylesheet"-->
+  <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.7/angular-material.min.css"-->
+  <!--link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Gloria+Hallelujah" rel="stylesheet"-->
+    <style id="infoBar_style">
+        :root {
+            --infobar-height: 0px;
+        }
+    </style>
+    <style id="infoBar_constants">
+        :root {
+            --infobar-animation-standard: 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+            --infobar-animation-duration: 0.2s;
+        }
+    </style>
+    <style id="statusBar_constants">
+        :root {
+            --status-bar-height: 0px;
+            --status-bar-height-constant: 0px;
+        }
+    </style>
+    <style id="virtual_screen">
+        :root {
+            --screen-position: static;
+            --screen-height: 100vh;
+            --screen-width: 100vw;
+            --screen-top: 0px;
+            --screen-right: 0px;
+            --screen-bottom: 0px;
+            --screen-left: 0px;
+            --screen-scroll-padding: 0px;
+            --screen-box-shadow: none;
+            --screen-transform: none;
+        }
+    </style>
+    <!-- Load d3.js -->
+    <!--script src="https://d3js.org/d3.v4.min.js"></script-->
+</head>
+<body>
+  <div class="virtualScreen">
+      <div
+              id="react-primary"
+              class="virtualScreenChild"
+              style="overflow-y: auto"
+      >
+          <main></main>
+      </div>
+  </div>
+</body>

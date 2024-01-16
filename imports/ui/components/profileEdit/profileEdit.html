@@ -1,0 +1,96 @@
+
+<ion-content class="j-grey-content-background profile-edit-content">
+
+  <div ng-if="!connected" class="animate-if">
+    <offline-message></offline-message>
+  </div>
+
+  <div ng-if="connected" class="list">
+
+    <label class="item item-input image-out-container" ng-click="profileEdit.runCamera()">
+      <div layout="row" layout-align="center center" class="camera-input-cont">
+        <div flex id="imageContainer">
+          <i id="cameraIcon" class="ion-camera camera-input"></i>
+          <img id="imageFile"></img>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input" ng-click="profileEdit.viewHandler('profileUsername', {})">
+      <div layout="row" layout-align="center center" class="item-container"> 
+        <div flex="40">
+          <span class="input-label">Username</span>
+        </div>
+        <div flex="60">
+          {{ profileEdit.user.username }}
+        </div>
+      </div>
+    </label>
+    <label class="item item-input" ng-click="profileEdit.viewHandler('profileEmail', {})">
+      <div layout="row" layout-align="center center" class="item-container"> 
+        <div flex="40">
+          <span class="input-label">Email</span>
+        </div>
+        <div flex="60">
+          {{ profileEdit.user.email | displayEmailFilter }}
+        </div>
+      </div>
+    </label>
+    <label class="item item-input" ng-click="profileEdit.viewHandler('profilePassword', {})">
+      <div layout="row" layout-align="center center" class="item-container"> 
+        <div flex="40">
+          <span class="input-label">Password</span>
+        </div>
+        <div flex="60" class="password-label">
+          {{ profileEdit.user.password }}
+        </div>
+      </div>
+      
+      
+    </label>
+    <label class="item item-input">
+      <div layout="row" layout-align="center center" class="item-container"> 
+        <div flex="40">
+          <span class="input-label">Birthdate</span>
+        </div>
+        <div flex="60">
+          <input class="input-month" type="month" ng-model="profileEdit.profile.birthdate" placeholder="profileEdit.profile.birthdate">
+        </div>
+      </div>
+    </label>
+    <label class="item item-input">
+      <div layout="row" layout-align="center center" class="item-container"> 
+        <div flex="40">
+          <span class="input-label">Zip Code</span>
+        </div>
+        <div flex="60">
+          <input type="text" ng-model="profileEdit.profile.zipCode" maxlength="5">
+        </div>
+      </div>
+    </label>
+    <label class="item item-input item-select">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="40">
+          <span class="input-label">Gender</span>
+        </div>
+        <div flex="60">
+          <select class="form-control select-align-left" ng-model="profileEdit.profile.gender">
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+    </label>
+  </div>
+
+</ion-content>
+
+<ion-footer-bar ng-if="connected" class="j-button-footer" ng-click="profileEdit.update()" layout="row" layout-align="center center">
+  <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-edit j-button-icon"></i>
+      Update
+    </a>
+  </div>
+</ion-footer-bar>

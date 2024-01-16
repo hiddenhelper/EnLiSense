@@ -1,0 +1,97 @@
+
+<ion-content class="has-header has-footer">
+  <ion-list>
+
+    <div class="item item-divider">
+      Profile
+    </div>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.viewHandler('profileEdit')">
+      Profile
+      <i class="icon ion-ios-person-outline"></i>
+    </ion-item>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.viewHandler('socialHistory')">
+      Social History
+      <i class="icon ion-ios-box-outline"></i>
+    </ion-item>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.viewHandler('notificationEdit')">
+      Notifications & Reminders
+      <i class="icon ion-ios-bell-outline"></i>
+    </ion-item>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.viewHandler('temperatureEdit')">
+      Display Preferences
+      <i class="icon ion-ios-settings"></i>
+    </ion-item>
+
+    <div class="item item-divider">
+      My Health
+    </div>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.viewHandler('clinician')">
+      Clinician
+      <i class="icon ion-ios-medkit-outline"></i>
+    </ion-item>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.viewHandler('conditionsList')">
+      Health Conditions
+      <i class="icon j-icon-checklist"></i>
+    </ion-item>
+
+    <div class="item item-divider">
+      My Device
+    </div>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.viewHandler('deviceDetails')">
+      Device Details
+      <i class="icon ion-ios-pulse"></i>
+    </ion-item>
+
+    <div class="item item-divider">
+      AWARE
+    </div>
+
+    <ion-item class="item item-label" style="adding-right: 0px; padding-top: 8px; padding-bottom: 8px;">
+      <div layout="row" layout-align="center center" >
+        <div flex="50" >
+          <span class="input-label">Application Version</span>
+        </div>
+        <div flex="50">
+          <input style="text-align: right; font-size: 15px;" type="text" ng-model="more.version" readonly/>
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.viewHandler('userFeedback')">
+      User Feedback
+      <i class="icon ion-ios-chatboxes-outline"></i>
+    </ion-item>
+
+    <div class="item item-divider">
+      Account
+    </div>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.sendSupportEmail()">
+      Support
+      <i class="icon ion-ios-chatbubble-outline"></i>
+    </ion-item>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.viewHandler('privacyNotice')">
+      Privacy Notice
+      <i class="icon ion-ios-locked-outline"></i>
+    </ion-item>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.viewHandler('introSlides')">
+      Play Introduction
+      <i class="icon ion-ios-play-outline"></i>
+    </ion-item>
+
+    <ion-item class="item item-icon-right item-label" ng-click="more.logout()">
+      Log Out
+      <i class="icon ion-ios-redo-outline"></i>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

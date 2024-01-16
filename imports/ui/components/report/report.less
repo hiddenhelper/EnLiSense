@@ -1,0 +1,127 @@
+report {
+  .table-scroll {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin: auto;
+    overflow: auto;
+    height: 300px;
+  }
+  .table-scroll table {
+    width: 100%;
+    min-width: 1280px;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  .table-wrap {
+    position: relative;
+  }
+  .table-scroll th,
+  .table-scroll td {
+    padding: 14px 10px;
+    border: 1px solid #e2e2e2;
+    vertical-align: top;
+    text-align: center;
+  }
+  .table-scroll thead th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+
+  .table-scroll th:first-child {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: #fff;
+  }
+  thead th:first-child,
+  tfoot th:first-child {
+    z-index: 5;
+  }
+
+
+
+
+  .table-scroll-2 {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin: auto;
+    overflow: auto;
+  }
+  .table-scroll-2 table {
+    width: 100%;
+    min-width: 1280px;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .table-scroll-2 th,
+  .table-scroll-2 td {
+    padding: 14px 10px;
+    border: 1px solid #e2e2e2;
+    vertical-align: top;
+    text-align: center;
+  }
+  .table-scroll-2 thead th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+
+  .red {
+    color: red;
+  }
+
+  .line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+  }
+  .zoom {
+    cursor: move;
+    fill: none;
+    pointer-events: all;
+  }
+  .avg-line {
+    stroke: steelblue;
+    transition: all 0.5s;
+  }
+  .avg-label {
+    font-size: 12px;
+    color: steelblue;
+  }
+
+  // default
+  .chart-box {
+    min-height: 236px;
+  }
+
+  .graph-canvas {
+    max-height: 236px;
+  }
+
+  // iphone 14 pro
+  @media only screen and (min-height: 852px) {
+    .chart-box {
+      min-height: 320px;
+    }
+
+    .graph-canvas {
+      max-height: 320px;
+    }
+  }
+
+
+  .j-no-res-warn-cont-report {
+    text-align: center;
+    padding: 50px 10px 10px 10px;
+    min-height: 100%;
+  }
+}
+
+@import "../reportDatePicker/reportDatePicker.less";

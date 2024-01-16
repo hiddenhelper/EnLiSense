@@ -1,0 +1,118 @@
+<ion-content class="has-header has-footer j-grey-content-background">
+  <ion-list>
+
+    <div class="item item-divider">
+      Health Conditions
+    </div>
+
+    <ion-item class="item j-item-meal-cont">
+      <div layout="row" layout-align="space-around center" >
+        <div id="Breakfast" flex="33" class="j-item-label-button"
+             ng-click="conditionsList.changeState('Crohn\'s')"
+             ng-class="{ 'j-item-label-button-clicked' : conditionsList.myState === 'Crohn\'s'}">
+          Crohn's
+        </div>
+        <div id="Lunch" flex="33" class="j-item-label-button"
+             ng-click="conditionsList.changeState('UC')"
+             ng-class="{ 'j-item-label-button-clicked' : conditionsList.myState === 'UC'}">
+          UC
+        </div>
+        <div id="Dinner" flex="33" class="j-item-label-button"
+             ng-click="conditionsList.changeState('IC')"
+             ng-class="{ 'j-item-label-button-clicked' : conditionsList.myState === 'IC'}">
+          IC
+        </div>
+      </div>
+    </ion-item>
+
+    <div class="item item-divider" ng-if="conditionsList.myState">
+      Details
+    </div>
+
+    <label class="item item-input" ng-if="conditionsList.myState">
+      <div class="row" style="padding: 0px;">
+        <div flex="40">
+          <span class="input-label">First Noticed Date</span>
+        </div>
+        <div flex="60">
+          <input type="month" class="input-month" ng-model="conditionsList.conditionsState.firstNoticedDate" placeholder="conditionsList.condition.firstNoticedDate">
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input" ng-if="conditionsList.myState">
+      <div class="row" style="padding: 0px;">
+        <div flex="40">
+          <span class="input-label">Diagnosed Date</span>
+        </div>
+        <div flex="60">
+          <input type="month" class="input-month" ng-model="conditionsList.conditionsState.dignosedDate" placeholder="conditionsList.condition.dignosedDate">
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input" ng-if="conditionsList.myState">
+      <div class="row" style="padding: 0px;">
+        <div flex="40">
+          <span class="input-label">Last Flare Date</span>
+        </div>
+        <div flex="60">
+          <input type="month" class="input-month" ng-model="conditionsList.conditionsState.lastFlareDate" placeholder="conditionsList.condition.lastFlareDate">
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-select">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="40">
+          <div class="input-label">Severity</div>
+        </div>
+        <div flex="60">
+          <select class="form-control select-align-left" ng-model="conditionsList.conditionsState.severity">
+            <option value="Remission">Remission</option>
+            <option value="Mild">Mild</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Severe">Severe</option>
+          </select>
+        </div>
+      </div>
+    </label>
+
+    <!-- new condition -->
+    <ion-item class="item j-item-new-cont">
+      <div layout="row"
+           layout-align="center center"
+           class="j-item-new-button"
+           ng-click="conditionsList.viewHandler('conditionAdd')">
+        <div flex="100">
+          <i class="icon ion-plus"></i>
+        </div>
+      </div>
+    </ion-item>
+
+
+    <!-- template -->
+    <div ng-repeat="condition in conditionsList.conditions">
+      <ion-item class="item item-icon-right item-condition">
+        <div layout="row" layout-align="center center" ng-click="conditionsList.viewHandler('conditionDetails',{_id: condition._id})">
+          <div flex="85">
+            <li class="item-condition-label"><p class="condition-label">{{ condition.label }}</p></li>
+          </div>
+          <div flex-offset="5" flex="10" class="item-mood-arrow">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
+      </ion-item>
+    </div>
+
+  </ion-list>
+</ion-content>
+
+<ion-footer-bar class="j-button-footer" ng-click="conditionsList.update()" layout="row" layout-align="center center">
+  <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-edit j-button-icon"></i>
+      Update
+    </a>
+  </div>
+</ion-footer-bar>

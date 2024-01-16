@@ -1,0 +1,306 @@
+<ion-content class="has-header j-grey-content-background" has-bouncing="false">
+  <!--div class="back-fade-top"></div>
+  <img ng-if="entryProfile.image[0].imageData" ng-src="{{entryProfile.image[0].imageData}}" class="background-container"></img>
+  <div class="back-fade-bottom"></div-->
+  <div class="container">
+    <!-- high level profile
+                  Name
+      Entered xx days ago, xxx entries
+        X items contain this item
+
+            Favorite  Follow
+    -->
+
+    <div class="card profile-card">
+      <div class="edit-inner-cont" ng-click="entryProfile.editHandler()">
+        <i class="ion-edit edit-input"></i>
+      </div>
+      <div class="entry-contents">
+        <h4 ng-if="!entryProfile.item.brand">{{ entryProfile.item.name }}</h4>
+        <h4 ng-if="entryProfile.item.brand">{{ entryProfile.item.name }} ({{ entryProfile.item.brand }})</h4>
+        <p ng-if="!entryProfile.item.category">{{ entryProfile.item.type }}</p>
+        <p ng-if="entryProfile.item.category">{{ entryProfile.item.type }} - {{ entryProfile.item.category }}</p>
+        <p>Entered {{ entryProfile.item.entryTimestamp | displayDaysSinceFilter}} days ago, {{ entryProfile.countOccurance }} total entries</p>
+      </div>
+      <div layout="row" layout-align="center" class="profile-card-buttons-cont">
+        <div flex="30"
+             id="profile-button-safe"
+             class="profile-button-s"
+             ng-click="entryProfile.buttonHandler('safe', !entryProfile.choice.selectedSafe)">
+          Okay
+        </div>
+        <div flex="30"
+             id="profile-button-caution"
+             class="profile-button-c"
+             ng-click="entryProfile.buttonHandler('caution', !entryProfile.choice.selectedCaution)">
+          Caution
+        </div>
+      </div>
+    </div>
+
+    <!-- score -->
+    <!--div class="card score-card">
+      <p class="profile-desc-title">Symptom Risk:</p>
+      <div layout="row" layout-align="center center" class="no-service-cont" ng-if="!entryProfile.combined" layout-wrap>
+        <div flex="80" class="text-center">
+          <span class="spinner" us-spinner="{color: '#3498db'}" ng-if="entryProfile.showloader === true"></span>
+          <div ng-if="entryProfile.showloader === false">
+            <i class="icon j-icon-brainstorming j-no-res-warn-icon"></i>
+            <div layout="row" layout-align="center center">
+              <p ng-if="entryProfile.errorCode !== 3" class="warn-text">We are having a problem with Janaru's digital brain. Please try again later.</p>
+              <p ng-if="entryProfile.errorCode === 3" class="warn-text">We do not have enough data on this item to calculate a risk score. Keep tracking!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div layout="row" layout-align="start start" layout-wrap class="symptoms-scores-cont" ng-if="entryProfile.combined">
+
+        <div flex="30" class="circle-contents">
+          <p>
+            <ul class='list-inline'>
+              <li><div class="btn-round" ng-style="entryProfile.btnStyle._0"><span> {{ entryProfile.combined.score }} </span></div></li>
+              <p> Overall </p>
+            </ul>
+          </p>
+        </div>
+
+        <div flex="30" class="circle-contents" ng-repeat="symptom in entryProfile.symptoms">
+          <p>
+            <ul class='list-inline'>
+              <li><div class="btn-round" ng-style="entryProfile.btnStyle._{{$index + 1}}"><span>{{ symptom.score }}</span></div></li>
+              <p> {{ symptom.label }} </p>
+            </ul>
+          </p>
+        </div>
+      </div-->
+      <div ng-if="entryProfile.combined">
+        <div class="profile-desc-legend" layout="row" layout-align="center">
+          <div flex="20" layout="column" layout-align="center">
+            <div flex layout="row" layout-align="center">
+              <p>
+                <ul class='list-inline'>
+                  <li><div class="btn-round-small btn-round-small-low"><span>1</span></div></li>
+                </ul>
+              </p>
+            </div>
+            <div flex layout="row" layout-align="center">
+              <p class="profile-desc-legend-label">Okay</p>
+            </div>
+          </div>
+          <div flex="20" layout="column" layout-align="center">
+            <div flex layout="row" layout-align="center">
+              <p>
+                <ul class='list-inline'>
+                  <li><div class="btn-round-small btn-round-small-med"><span>5</span></div></li>
+                </ul>
+              </p>
+            </div>
+            <div flex layout="row" layout-align="center">
+              <p class="profile-desc-legend-label">&larr;  &rarr;</p>
+            </div>
+          </div>
+          <div flex="20" layout="column" layout-align="center">
+            <div flex layout="row" layout-align="center">
+              <p>
+                <ul class='list-inline'>
+                  <li><div class="btn-round-small btn-round-small-high"><span>10</span></div></li>
+                </ul>
+              </p>
+            </div>
+            <div flex layout="row" layout-align="center">
+              <p class="profile-desc-legend-label">Caution</p>
+            </div>
+          </div>
+        </div>
+        <p class="profile-desc-warning">
+          Please always consult with a medical professional before making changes to your diet,
+          exercise routine or any other activities that impact your health and wellbeing.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- contents
+      Each content should also include their scores
+
+      * content 1     (5)
+      * content 2     (4)
+    -->
+    <div class="card profile-contents-card"
+         ng-if="entryProfile.item.children.length > 0">
+      <div class="edit-inner-cont" ng-click="entryProfile.editHandler()">
+        <i class="ion-edit edit-input"></i>
+      </div>
+      <p class="profile-desc-title">Contents:</p>
+      <ion-list>
+        <ion-item ng-repeat="entry in entryProfile.item.children">
+          <div layout="row" layout-align="center center"
+               ng-click="entryProfile.viewHandler('entryProfile',{'_id': entry._id})">
+            <!--div flex="10" class="circle-contents-small">
+              <p>
+                <ul class='list-inline'>
+                  <li><div class="btn-round-small" ng-style="entryProfile.btnSmallStyle._{{$index}}"><span>{{ entry.score }}</span></div></li>
+                </ul>
+              </p>
+            </div-->
+            <div class="contents-entry-name" flex="90">
+              {{ entry.name }}
+            </div>
+            <div flex="10"
+               class="item-icon-right">
+              <i class="icon ion-ios-arrow-right"></i>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- history
+      Visualization
+    -->
+    <div class="card">
+      <p class="profile-desc-title">History:</p>
+      <div layout="column" layout-align="center center"
+           ng-if="entryProfile.aggCounts.counts === undefined">
+        <div>
+          <p class="j-color-blue"> You have no entries with this item </p>
+        </div>
+      </div>
+
+      <div layout="column" layout-align="center center"
+           class="profile-history-viz-cont"
+           ng-click="entryProfile.onClick()"
+           ng-if="entryProfile.aggCounts.counts !== undefined">
+        <div flex="20">
+          <p> {{ entryProfile.title }} </p>
+        </div>
+        <div flex="100" class="bar-graph">
+          <canvas class="chart chart-bar"
+                  chart-data="entryProfile.data"
+                  chart-labels="entryProfile.labels"
+                  chart-series="entryProfile.series"
+                  chart-options="entryProfile.options"
+                  chart-dataset-override="entryProfile.datasetOverride"
+                  chart-colors="entryProfile.colors"
+                  chart-legend="true">
+          </canvas>
+        </div>
+      </div>
+      <p class="profile-desc-title" ng-if="entryProfile.aggCounts.counts !== undefined">Recent Entries:</p>
+      <ion-list ng-if="entryProfile.aggCounts.counts !== undefined">
+        <ion-item  ng-repeat="entry in entryProfile.lastTenEntries">
+          <div layout="row" layout-align=" center" ng-click="entryProfile.viewHandler('entriesItem',{'_id': entry._id, type: entry.entryType})">
+            <div flex="60" layout-align="start center" class="last-10-entries-text">
+              {{ entry.entryTimestamp | displayDateFilter }}
+            </div>
+            <div flex="20" layout-align="start center" class="last-10-entries-text">
+              {{ entry.entryTimestamp | displayTimeFilter }}
+            </div>
+            <div flex="20">
+
+            </div>
+            <div flex="10"
+               class="item-icon-right">
+              <i class="icon ion-ios-arrow-right"></i>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item ng-if="entryProfile.entriesCount > entryProfile.limit">
+          <div class="view-more-cont" ng-click="entryProfile.viewMoreEntries()">
+            <div layout="row" layout-align="center center" class="view-more-button">
+              <div flex="80" class="view-more-button-text text-center j-color-blue">
+                View more
+              </div>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Member of -->
+    <div class="card" ng-if="(entryProfile._.uniq(entryProfile.dBserviceRes.parentIds)).length > 1">
+      <p class="profile-desc-title">Contained within:</p>
+      <ion-list>
+        <ion-item ng-repeat="parent in entryProfile.parents track by $index">
+          <div layout="row" layout-align="center center"
+               ng-click="entryProfile.viewHandler('entryProfile',{'_id': parent._id})">
+            <div flex="90">
+              <div layout="column">
+                <div flex class="pav-name">
+                  {{ parent.name }}
+                </div>
+                <div flex class="pav-description" ng-if="!entry.category">
+                  {{ parent.type }}
+                </div>
+                <div flex class="pav-description" ng-if="entry.category">
+                  {{ parent.type }} ({{ parent.category }})
+                </div>
+              </div>
+            </div>
+
+            <div flex="10"
+               class="item-icon-right">
+              <i class="icon ion-ios-arrow-right"></i>
+            </div>
+          </div>
+        </ion-item>
+
+        <ion-item ng-if="(entryProfile._.uniq(entryProfile.dBserviceRes.parentIds)).length > entryProfile.parentLimit">
+          <div class="view-more-cont" ng-click="entryProfile.viewMoreEntries()">
+            <div layout="row" layout-align="center center" class="view-more-button">
+              <div flex="80" class="view-more-button-text text-center j-color-blue">
+                View more
+              </div>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Notes -->
+    <div class="card profile-image-card" ng-if="entryProfile.item.notes">
+      <div class="edit-inner-cont" ng-click="entryProfile.editHandler()">
+        <i class="ion-edit edit-input"></i>
+      </div>
+      <p class="profile-desc-title">Notes:</p>
+      <p>{{ entryProfile.item.notes }}</p>
+    </div>
+
+    <!-- similar items -->
+    <div class="profile-card-title" ng-if="entryProfile.updatedSimilarItems && entryProfile.updatedSimilarItems.length > 0">
+      <p>Similar Items</p>
+    </div>
+    <div class="card" ng-if="entryProfile.updatedSimilarItems && entryProfile.updatedSimilarItems.length > 0">
+      <ion-list>
+        <ion-item ng-repeat="item in entryProfile.updatedSimilarItems">
+          <div layout="row" ng-click="entryProfile.viewHandler('entryProfile',{'_id': item._id})">
+            <!--div flex="10" class="circle-contents-small">
+              <p>
+                <ul class='list-inline'>
+                  <li><div class="btn-round-small" ng-style="entryProfile.btnSimilarStyle._{{$index}}"><span>{{ item.score }}</span></div></li>
+                </ul>
+              </p>
+            </div-->
+            <div flex="90">
+              <div layout="column">
+                <div flex class="pav-name">
+                  {{ item.name }}
+                </div>
+                <div flex class="pav-description" ng-if="!item.category">
+                  {{ item.brand }}
+                </div>
+                <div flex class="pav-description" ng-if="item.category">
+                  {{ item.type }} ({{ item.category }})
+                </div>
+              </div>
+            </div>
+            <div flex="10"
+               class="item-icon-right">
+              <i class="icon ion-ios-arrow-right"></i>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

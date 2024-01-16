@@ -1,0 +1,89 @@
+<ion-content class="has-header has-footer">
+  <div ng-if="insightsList.connected && insightsList.insightsCount !== 0">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="insightsList.reset()">
+    </ion-refresher>
+    <div>
+      <tab-slide-box tab="2" >
+      <div class="tsb-icons">
+        <div class="tsb-ic-wrp">
+  				<a href="javascript:;" class="button-icon ion-home"></a>
+          <a href="javascript:;" class="button-icon j-icon-warning3"></a>
+          <a href="javascript:;" class="button-icon j-icon-hot-food"></a>
+          <a href="javascript:;" class="button-icon j-icon-drink2"></a>
+          <a href="javascript:;" class="button-icon j-icon-medicine-bottle"></a>
+          <a href="javascript:;" class="button-icon j-icon-situp"></a>
+      </div>
+      </div>
+        <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+          <ion-slide class="slide-cont">
+            <p class="slide-label">All</p>
+          </ion-slide>
+          <ion-slide>
+              <p class="slide-label">Symptoms</p>
+          </ion-slide>
+          <ion-slide>
+              <p class="slide-label">Food</p>
+          </ion-slide>
+          <ion-slide>
+              <p class="slide-label">Drink</p>
+          </ion-slide>
+          <ion-slide>
+              <p class="slide-label">Medication</p>
+          </ion-slide>
+          <ion-slide>
+              <p class="slide-label">Exercise</p>
+          </ion-slide>
+        </ion-slide-box>
+      </tab-slide-box>
+    </div>
+    <div layout="row">
+      <div class="list items-list-div" dnd-list="list">
+        <div class="card repeated-item"
+             ng-repeat="insight in insightsList.insights | orderBy:'-entryTimestamp'"
+             ng-if="insight.hidden !== true">
+
+          <div class="info-container" ng-click="insightsList.popup(insight._id, insight.title, insight.message)">
+            <i class="icon ion-ios-arrow-down" ng-click="insightsList.popup(insight._id, insight.title, insight.message)"></i>
+          </div>
+
+          <!-- EXAMPLE 1 - START insight.close=true-->
+          <div layout="row">
+            <div flex="15" layout="row" layout-align="center center">
+              <a class="icon-circle icon-circle-outline items-list-icon">
+                <i ng-if="insight.type==='Food'" class="icon j-icon-hot-food"></i>
+                <i ng-if="insight.type==='Drink'" class="icon j-icon-drink2"></i>
+                <i ng-if="insight.type==='Symptoms'" class="icon j-icon-warning3"></i>
+                <i ng-if="insight.type==='Exercise'" class="icon j-icon-situp"></i>
+                <i ng-if="insight.type==='Medication'" class="icon j-icon-medicine-bottle"></i>
+              </a>
+            </div>
+
+            <div flex="85" class="item">
+              <h2 class="title">
+                {{ insight.title }}
+              </h2>
+              <p class="message">
+                {{ insight.message }}
+              </p>
+            </div>
+          </div>
+          <!-- EXAMPLE 1 - START -->
+        </div>
+
+      </div>
+    </div>
+    <ion-infinite-scroll
+        ng-if="insightsList.insightsCount > 10 && insightsList.insights.length < insightsList.insightsCount"
+        on-infinite="insightsList.loadMore()"
+        distance="1%">
+    </ion-infinite-scroll>
+  </div>
+  <div ng-if="insightsList.connected && insightsList.insightsCount === 0" class="animate-if">
+    <no-results-message></no-results-message>
+  </div>
+  <div ng-if="!insightsList.connected" class="animate-if">
+    <offline-message></offline-message>
+  </div>
+</ion-content>

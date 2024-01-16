@@ -1,0 +1,48 @@
+<ion-content layout="row" class="register-content" layout-align="center center" overflow-scroll="true">
+  <div class="auth">
+    <div class="container register-container">
+      <div class="list list-inset">
+        <h4 class="register-title">
+          Register a new account
+        </h4>
+        <div class="item item-input item-input-gap">
+          <input placeholder="Username" type="text" ng-model="register.credentials.username" required/>
+        </div>
+        <div class="item item-input item-input-gap">
+          <input placeholder="Email" type="text" ng-model="register.credentials.email" required/>
+        </div>
+        <div class="item item-input item-input-gap">
+          <input placeholder="Password" type="password" ng-model="register.credentials.password" required/>
+        </div>
+        <div class="item item-input item-input-gap">
+          <input type="text" onfocus="this.type='month';this.setAttribute('onfocus','');this.blur();this.focus();" ng-model="register.tmpBirthdate" placeholder="Birthdate"/>
+        </div>
+        <div class="item item-input item-input-gap">
+          <input placeholder="Zip Code" type="text" ng-model="register.profile.zipCode" maxlength="5"/>
+        </div>
+        <div class="item-input-gap register-gender-div" layout="row" layout-align="center center">
+          <button flex id="maleButton" class="button icon-left ion-male register-gender-button-left" ng-click="register.setGender('Male')">Male</button>
+          <button flex id="femaleButton" class="button icon-left ion-female register-gender-button-right" ng-click="register.setGender('Female')">Female</button>
+          <button flex id="otherButton" class="button icon-left register-gender-button-right" ng-click="register.setGender('Other')">Other</button>
+        </div>
+        <div class="register-already-user">
+          <a ng-click="register.viewHandler('login', {})">Already a user?</a>
+        </div>
+        <div class="item item-input terms-box" layout="row" layout-align="center center">
+          <div flex="20">
+            <ion-checkbox class="j-search-box-chk-box-bal" ng-model="register.profile.agreeToTerms"></ion-checkbox>
+          </div>
+          <div flex="80" class="terms-cont">
+            I agree to the <a ng-click="register.open()"> terms of use </a>
+          </div>
+        </div>
+      </div>
+      <button class="button button-small button-full button-positive register" ng-click="register.register()" >Register</button>
+      <!--button class="button button-small button-full button-positive register" ng-click="register.register()" aria-label="login" ng-disabled="register.registerForm.$invalid()">Register</button-->
+      <div ng-show="register.error" class="message-error" layout="row" layout-fill layout-padding layout-margin>
+        <p class="login-error-message">{{ register.error.reason }}</p>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

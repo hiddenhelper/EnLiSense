@@ -1,0 +1,18 @@
+<ion-view title="Device" hide-back-button="false" cache-view="true">
+    <ion-nav-buttons side="left">
+        <button class="button-clear header-back-button" ng-click="goBackHandler()">
+            <i class="ion-ios-arrow-back"></i> Cancel
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <span style="font-size: 120%;">Report</span>
+    </ion-nav-title>
+    <div class="bar bar-subheader">
+        <div class="button-bar">
+            <button class="button icon-left ion-battery-charging">{{report.batteryStatus}}</button>
+            <button class="button">{{report.name}}</button>
+            <button class="button icon-left ion-ios-speedometer">{{report.deviceSpace}}</button>
+        </div>
+    </div>
+    <report></report>
+</ion-view>

@@ -1,0 +1,76 @@
+<md-dialog class="modal-dialog" aria-label="Item Add">
+  <md-dialog-content>
+    <ion-list>
+
+      <ion-item class="item item-icon-left modal-item" ng-click="viewHandler('symptomsList')">
+        <a class="icon-circle icon-circle-outline" >
+          <i class="icon j-icon-warning3 icon-symptoms"></i>
+        </a>
+        Symptom
+      </ion-item>
+
+      <ion-item class="item item-icon-left modal-item" ng-click="viewHandler('entriesItem','Food')">
+        <a class="icon-circle icon-circle-outline">
+          <i class="icon j-icon-hot-food icon-food"></i>
+        </a>
+        Food
+      </ion-item>
+
+      <ion-item class="item item-icon-left modal-item" ng-click="viewHandler('entriesItem','Drink')">
+        <a class="icon-circle icon-circle-outline">
+          <i class="icon j-icon-drink2 icon-drink"></i>
+        </a>
+        Drink
+      </ion-item>
+
+      <ion-item class="item item-icon-left modal-item" ng-click="viewHandler('entriesItem','Medication')">
+        <a class="icon-circle icon-circle-outline">
+          <i class="icon j-icon-medicine-bottle icon-medication"></i>
+        </a>
+        Medication
+      </ion-item>
+
+
+      <ion-item class="item item-icon-left modal-item" ng-click="viewHandler('entriesItem','Exercise')">
+        <a class="icon-circle icon-circle-outline">
+          <i class="icon j-icon-situp icon-exercise"></i>
+        </a>
+        Exercise
+      </ion-item>
+
+      <ion-item class="item item-icon-left modal-item" ng-click="viewHandler('sleepItem')">
+        <a class="icon-circle icon-circle-outline">
+          <i class="icon j-icon-sleep icon-sleep"></i>
+        </a>
+        Sleep
+      </ion-item>
+
+      <ion-item class="item item-icon-left modal-item" ng-click="viewHandler('moodsList')">
+        <a class="icon-circle icon-circle-outline">
+          <i class="icon j-icon-smile icon-mood"></i>
+        </a>
+        Mood
+      </ion-item>
+      
+      <ion-item class="item item-icon-left modal-item" ng-click="viewHandler('entriesItem','Event')">
+        <a class="icon-circle icon-circle-outline">
+          <i class="icon j-icon-calendar icon-event"></i>
+        </a>
+        Event
+      </ion-item>
+
+      <ion-item class="item item-icon-left modal-item" ng-click="viewHandler('vitalsItem')">
+        <a class="icon-circle icon-circle-outline">
+          <i class="icon j-icon-heartbeat icon-vitals"></i>
+        </a>
+        Vitals
+      </ion-item>
+
+    </ion-list>
+
+    <div class="modal-exit-button">
+        <i class="ion-ios-close-outline" ng-click="done()"></i>
+    </div>
+
+  </md-dialog-content>
+</md-dialog>

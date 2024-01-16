@@ -1,0 +1,80 @@
+sleep-item {
+  .sleep-item-content { 
+    height: 100vh !important;
+    position: fixed;
+    padding-top: 64px;
+    padding-bottom: 44px;
+  }
+
+  .overflow-scroll {
+    &.keyboard-up:not(.keyboard-up-confirm) {
+      -webkit-overflow-scrolling: auto;
+    }
+  }
+
+  .keyboard-up{
+    height: auto !important;
+  }
+
+  .j-sleep-entry-time-icon {
+    font-size: 24px;
+  }
+
+  .j-sleep-entry-time {
+
+  }
+  .j-sleep-entry-date {
+    text-align: right;
+  }
+
+  .j-sleep-quality-cont {
+    padding: 0px 0px 0px 0px;
+    min-height: 55px;
+  }
+
+  .j-sleep-quality-row {
+    min-height: 100%;
+  }
+
+  .j-sleep-quality-label {
+    margin-left: 20px;
+    min-width: 30%;
+    max-width: 30%;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .j-sleep-quality-score {
+    padding-left: 5px;
+  }
+  // Range and range labels
+  .range {
+    border: none;
+    background-color: rgba(0,0,0,0);
+  }
+
+  .range-cont {
+    position: relative;
+  }
+
+  .range-labels {
+    position: absolute;
+    z-index: 1;
+    bottom: 5px;
+    min-width: 100%;
+    font-size: 8px;
+    text-align: center;
+    color: rgba(0,0,0,0.25);
+  }
+
+  .range-labels-low {
+    text-align: left;
+    margin-left: 14px;
+  }
+
+  .range-labels-high {
+    text-align: right;
+    margin-right: 14px;
+  }
+}

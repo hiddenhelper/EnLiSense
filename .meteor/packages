@@ -1,0 +1,54 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-base@1.5.1             # Packages every Meteor app needs to have
+# mobile-experience@1.0.4       # Packages for a great mobile UX
+mongo@1.13.0                   # The database Meteor supports right now
+reactive-var            # Reactive variable for tracker
+jquery@1.11.10                  # Helpful client-side library
+tracker@1.2.0                 # Meteor's client-side reactive programming library
+
+standard-minifier-css@1.7.4   # CSS minifier run for production mode
+standard-minifier-js@2.7.2    # JS minifier run for production mode
+es5-shim@4.8.0                # ECMAScript 5 compatibility for older browsers.
+shell-server@0.5.0            # Server-side component of the `meteor shell` command
+
+pbastowski:angular-babel
+dispatch:mocha-phantomjs
+dispatch:mocha-browser
+pagebakers:ionicons
+ddp-rate-limiter@1.1.0
+urigo:static-templates
+tmeasday:publish-counts
+mobile-status-bar@1.1.0
+launch-screen@1.3.0
+mdg:camera
+ground:db
+meteorhacks:subs-manager
+http@1.2.12
+meteorhacks:async
+session@1.2.0
+appcache@1.2.7
+dynamic-import@0.7.2
+underscore@1.0.10
+raix:eventstate
+matb33:collection-hooks
+okgrow:analytics
+accounts-base@2.2.0
+dotansimha:accounts-ui-angular
+email@2.2.0
+accounts-password@2.2.0
+less
+raix:push
+tuhituhi18:ground-user
+check
+tripflex:ionicons2
+tripflex:ionicons3
+reactive-dict
+manuel:reactivearray
+sacha:spin
+meteorhacks:aggregate
+richsilv:owl-carousel

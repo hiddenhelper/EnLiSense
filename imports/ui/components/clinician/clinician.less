@@ -1,0 +1,88 @@
+clinician {
+  .clinician-content { 
+    height: 100vh !important;
+    position: fixed;
+  }
+
+  .overflow-scroll {
+    &.keyboard-up:not(.keyboard-up-confirm) {
+      -webkit-overflow-scrolling: auto;
+    }
+  }
+
+  .keyboard-up{
+    height: auto !important;
+  }
+  
+  .image-out-container {
+    width: 100%;
+    padding: 0px 0px 0px 0px !important;
+  }
+
+  .image-out-container {
+    min-height: 290px;
+  }
+
+  #imageInnerCont {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+  }
+
+  #imageFile {
+    position: absolute;
+    z-index: -1;
+    left: 2px;
+    top: 2px;
+    max-width: 100%;
+    padding: 0px 0px 0px 0px !important;
+  }
+
+  .camera-input-cont {
+    width: 100%;
+    text-align: center;
+    min-width: 100%;
+    min-height: 200px;
+  }
+
+  .camera-input {
+
+    font-size: 50px;
+  }
+
+
+
+  .profile-update {
+    color: white;
+  }
+
+  .profile-update-icon {
+    margin-right: 10px;
+    color: white;
+  }
+
+  .password-label {
+    -webkit-text-security: disc;
+    height:20px;
+    width:100%;
+    -webkit-appearance: textfield;
+    -webkit-user-select: text;
+    cursor: auto;
+  }
+
+  .j-warning-cont {
+    background-color: #db3445;
+    text-align: center;
+  }
+
+  .j-warning-label {
+    min-width: 100%;
+    color: white;
+    text-align: center;
+  }
+
+  input[disabled] {
+    background-color: #ffffff;
+  }
+}

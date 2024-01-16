@@ -1,0 +1,171 @@
+<ion-content class="has-header has-footer j-grey-content-background">
+  <ion-list can-swipe="true">
+
+    <!--div class="item item-divider">
+      Image
+    </div>
+    <ion-item class="item image-container-out" ng-click="entryAdd.takePhoto()" ng-style="entryAdd.imgBackground">
+      <div class="image-container-in" layout="row" layout-align="center center">
+        <i id="cameraIcon" class="ion-camera camera-input" ng-if="!entryAdd.imageData"></i>
+        <img id="imageCont" src="{{ entryAdd.imageData }}" ng-if="entryAdd.imageData"></img>
+      </div>
+    </ion-item-->
+
+    <div class="item item-divider">
+      Labels
+    </div>
+
+    <label class="item item-input" ng-if="entryAdd.type != 'Medication'">
+      <span class="input-label">Name</span>
+      <input type="text" ng-model="entryAdd.entry.name">
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type != 'Medication'">
+      <span class="input-label">Brand</span>
+      <input type="text" ng-model="entryAdd.entry.brand"/>
+    </label>
+    <label ng-if="entryAdd.entry.type !== 'Exercise' && entryAdd.type !== 'Medication'" class="item item-input" ng-click="entryAdd.scanBarcode()">
+      <span class="input-label">Barcode</span>
+      <div class="j-add-barcode-input">{{ entryAdd.entry.barcode }}</div>
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type != 'Medication'">
+      <span class="input-label">Category</span>
+      <input type="text"
+             ng-model="entryAdd.entry.category"
+             mobiscroll-select="entryAdd.selectScollerSettings"
+             mobiscroll-instance="selectScroller1"/>
+    </label>
+
+    <label class="item item-input" ng-if="entryAdd.type == 'Medication'">
+      <span class="input-label">Drug Name</span>
+      <input type="text" ng-model="entryAdd.entry.name">
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type == 'Medication'">
+      <span class="input-label">Generic Name</span>
+      <input type="text" ng-model="entryAdd.entry.genericName">
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type == 'Medication'">
+      <span class="input-label">Drug Class</span>
+      <input type="text" ng-model="entryAdd.entry.drugClass">
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type == 'Medication'">
+      <span class="input-label">Drug Type</span>
+      <input type="text" ng-model="entryAdd.entry.drugType">
+    </label>
+
+    <label class="item" ng-if="entryAdd.type == 'Medication'" style="padding: 6px 0 5px 16px;" >
+      <div layout="row" layout-align="center center">
+        <span flex="85" class="input-label">Anti-Diarrheal Drug</span>
+        <input flex="15" type="checkbox" ng-model="entryAdd.entry.antiDiarrhealDrug" style="max-height: 30px;"/>
+      </div>
+    </label>
+
+    <div class="item item-divider" ng-if="entryAdd.type == 'Food' || entryAdd.type == 'Drink'">
+      Nutrition
+    </div>
+    <label class="item item-input" ng-if="entryAdd.type == 'Food' || entryAdd.type == 'Drink'">
+      <span class="input-label">Calories</span>
+      <input class="val-input" type="text" ng-model="entryAdd.entry.calories">
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type == 'Food' || entryAdd.type == 'Drink'">
+      <span class="input-label">Fat [g]</span>
+      <input class="val-input" type="text" ng-model="entryAdd.entry.fat">
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type == 'Food' || entryAdd.type == 'Drink'">
+      <span class="input-label">Cholesterol [mg]</span>
+      <input class="val-input" type="text" ng-model="entryAdd.entry.cholesterol">
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type == 'Food' || entryAdd.type == 'Drink'">
+      <span class="input-label">Sodium [mg]</span>
+      <input class="val-input" type="text" ng-model="entryAdd.entry.sodium">
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type == 'Food' || entryAdd.type == 'Drink'">
+      <span class="input-label">Total Carbohydrate [g]</span>
+      <input class="val-input" type="text" ng-model="entryAdd.entry.totalCarbohydrate">
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type == 'Food' || entryAdd.type == 'Drink'">
+      <span class="input-label">Dietary fiber [g]</span>
+      <input class="val-input" type="text" ng-model="entryAdd.entry.dietaryFiber">
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type == 'Food' || entryAdd.type == 'Drink'">
+      <span class="input-label">Sugar [g]</span>
+      <input class="val-input" type="text" ng-model="entryAdd.entry.sugar">
+    </label>
+    <label class="item item-input" ng-if="entryAdd.type == 'Food' || entryAdd.type == 'Drink'">
+      <span class="input-label">Protein [g]</span>
+      <input class="val-input" type="text" ng-model="entryAdd.entry.protein">
+    </label>
+
+    <div class="item item-divider" ng-if="entryAdd.type == 'Medication'">
+      Dosage
+    </div>
+    <label class="item item-input" ng-if="entryAdd.type == 'Medication'">
+      <span class="input-label">Medication dosage [mg]</span>
+      <input class="val-input" type="text" ng-model="entryAdd.entry.dosage">
+    </label>
+
+    <div class="item item-divider">
+      Contents
+    </div>
+
+    <!-- new contents -->
+    <ion-item class="item j-item-new-cont">
+      <div layout="row"
+           layout-align="center center"
+           class="j-item-new-button"
+           ng-click="entryAdd.viewHandler('entriesSearch',{type: entryAdd.type})">
+        <div flex="100">
+          <i class="icon ion-plus"></i>
+        </div>
+      </div>
+    </ion-item>
+
+    <!-- template -->
+    <div ng-repeat="val in entryAdd.entry.selected track by $index">
+      <ion-item class="item j-add-item-cont">
+        <div layout="row" layout-align="center center" class="j-add-item-row">
+          <div flex="5">
+          </div>
+          <div flex="75" class="j-add-item-label">
+            {{ val.name }}
+          </div>
+          <div flex="10">
+          </div>
+          <div flex="10" class="item-icon-right j-add-item-arrow-cont" ng-click="entryAdd.viewHandler('entryDetails',{'_id': val._id, type: entryAdd.type})">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
+
+        <ion-option-button class="j-add-delete-cont" ng-click="entryAdd.removeContentsHandler(val._id)">
+          <div class="j-add-delete-row" layout="row" layout-align="center center">
+            <i class="icon ion-ios-trash-outline j-add-delete-icon">
+              <span class="j-add-delete-label">Delete</span>
+            </i>
+          </div>
+        </ion-option-button>
+
+      </ion-item>
+    </div>
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item j-notes-cont">
+      <textarea rows="5" ng-model="entryAdd.entry.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer-bar class="j-button-footer" layout="row"
+                layout-align="center center"
+                ng-click="entryAdd.submit()">
+  <div layout="row" layout-align="center center"
+       class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Add Entry
+    </a>
+  </div>
+</ion-footer-bar>

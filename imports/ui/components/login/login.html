@@ -1,0 +1,39 @@
+<ion-content layout="row"  class="login-content" layout-align="center center" overflow-scroll="true" padding="true">
+  <div class="auth-title-div">
+    <!--h1 class="auth-title">
+      IBD AWARE
+    </h1-->
+    <img class="logo-image" src="img/logo_gray.png"></img>
+    <!--h4 class="auth-subtitle">
+      Intelligent food &<br/>symptom tracking
+    </h4-->
+  <div>
+  <div class="auth" layout="row" layout-align="center center">
+    <form class="container animated fadeInUp login-container">
+      <div class="">
+        <div class="login-input-container">
+          <input class="login-input" size="34" placeholder=" Username" type="text" ng-model="login.credentials.username"/>
+        </div>
+        <div class="password-input-container item-input-password">
+          <input class="password-input" size="34" placeholder=" Password" type="password" ng-model="login.credentials.password"/>
+          <img class="face-id-img" src="img/Face_ID_logo.png" ng-click="login.loginWithFaceID()" ng-if="login.enableFaceID && login.isFaceKeyAvailable"></img>
+        </div>
+
+        <div layout="row" layout-align="center center">
+          <div flex="50">
+            <ion-toggle ng-model="login.enableFaceID" toggle-class="toggle-success" class="login-edit-toggle" justify="space-between" ng-change="login.changeFaceIDToggle()">Face ID</ion-toggle>
+          </div>
+
+          <div class="login-forgot" flex="50">
+            <a ng-click="login.viewHandler('password', {})">Forgot password?</a>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="button button-small button-full button-balanced login" ng-disabled="login.loginForm.$invalid()" ng-click="login.login()">Login</button>
+      <button class="button button-small button-full button-positive register" ng-click="login.viewHandler('register', {'username': login.credentials.username})">Register</button>
+      <div ng-show="login.error" class="message-error" layout="row">
+        <p class="login-error-message">{{ login.error.message }}</p>
+      </div>
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,38 @@
+<ion-content class="has-header j-grey-content-background clinician-content" ng-class="{true: 'has-footer'}[clinician.connected]">
+  <div class="list" ng-if="clinician.connected">
+    <label class="item item-input">
+      <span class="input-label">Current</span>
+      <input type="email" ng-model="clinician.clinicianData.currentEmail" disabled>
+    </label>
+    <label class="item item-input">
+      <span class="input-label">New</span>
+      <input type="email" ng-model="clinician.newEmail">
+    </label>
+    <label ng-if="clinician.error === true" class="item item-input j-warning-cont">
+      <span class="input-label j-warning-label">Error with email address, please try again</span>
+    </label>
+  </div>
+
+  <div ng-if="!clinician.connected">
+    <offline-message></offline-message>
+  </div>
+</ion-content>
+
+<ion-footer-bar ng-if="clinician.connected" class="j-button-footer" layout="row" layout-align="center center">
+  <div class="j-button-cont j-button-cont-half j-button-cont-red"
+       layout="row" layout-align="center center"
+       ng-click="clinician.removeButton()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-ios-trash-outline j-button-icon"></i>
+      Remove
+    </a>
+  </div>
+  <div class="j-button-cont j-button-cont-half j-button-cont-green"
+       layout="row" layout-align="center center"
+       ng-click="clinician.updateButton()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Update
+    </a>
+  </div>
+</ion-footer-bar>

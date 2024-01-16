@@ -1,0 +1,20 @@
+<ion-content class="has-header has-subheader has-footer j-grey-content-background" overflow-scroll="true">
+    <ion-list>
+        <ion-item collection-repeat="state in states" collection-item-height="370" collection-item-width="'100%'">
+            <div class="row" ng-repeat="value in state.row">
+                <div class="col">{{report.header[$index]}}</div>
+                <div class="col">{{value}}</div>
+            </div>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll on-infinite="loadMore()"></ion-infinite-scroll>
+</ion-content>
+<ion-footer-bar class="j-button-footer" ng-click="update()" layout="row" layout-align="center center">
+    <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green">
+        <a class="j-button-text">
+            <i class="icon ion-ios-pulse j-button-icon"></i>
+            Graph
+        </a>
+    </div>
+</ion-footer-bar>
+

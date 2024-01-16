@@ -1,0 +1,258 @@
+
+<ion-content class="has-header j-grey-content-background" [ngClass]="{'has-footer': deviceDetails.loading === false && connected}">
+
+  <div class="item item-divider" ng-if="deviceDetails.device && connected">
+      <div class="button-bar">
+          <button class="button icon-left ion-battery-charging" style="font-size:70%;" ng-if="deviceDetails.battery !== '-'">{{deviceDetails.battery}}</button>
+
+          <button class="button icon-left ion-battery-charging" style="font-size:70%;" ng-if="deviceDetails.battery === '-'">
+            <div>
+                <img class="j-loader-small" ng-src="/img/loader.gif" />
+            </div>
+          </button>
+
+          <button class="button icon-left ion-radio-waves" style="font-size:70%;" ng-if="deviceDetails.rssi !== '-'">{{deviceDetails.rssi}}</button>
+
+          <button class="button icon-left ion-radio-waves" style="font-size:70%;" ng-if="deviceDetails.rssi === '-'">
+            <div>
+                <img class="j-loader-small" ng-src="/img/loader.gif" />
+            </div>
+          </button>
+      </div>
+  </div>
+
+  <div ng-if="!connected" class="animate-if">
+    <offline-message></offline-message>
+  </div>
+
+  <ion-list can-swipe="true" ng-if="connected">
+    <div class="item item-divider" ng-if="deviceDetails.warning === true">
+      Notice
+    </div>
+
+    <label class="item item-input" ng-if="deviceDetails.warning === true">
+      <span class="input-label">Warning</span>
+      <p class="restore-del-text">
+        Restore deleted item?
+      </p>
+    </label>
+
+    <div class="j-no-res-warn-cont" ng-if="!deviceDetails.device || deviceDetails.device === {}">
+      <div class="j-no-res-warn-icon-cont">
+        <i class="icon ion-ios-pulse j-no-res-warn-icon"></i>
+      </div>
+      <div class="j-no-res-warn-message-cont">
+        <p class="j-no-res-warn-message-header">
+          No Device Registered
+        </p>
+      </div>
+    </div>
+
+    <div class="j-no-res-warn-cont animate-if" ng-if="deviceDetails.loading === true">
+      <div>
+        <div>
+            <img class="j-loader" ng-src="/img/loader.gif" />
+        </div>
+      </div>
+      <div class="j-no-res-warn-message-cont">
+        <p class="j-no-res-warn-message-header">
+          {{ deviceDetails.loaderMessage }}
+        </p>
+      </div>
+    </div>
+
+
+    <div class="item item-divider" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      Label
+    </div>
+
+    <!--label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Name</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.name" readonly/>
+        </div>
+      </div>
+    </label-->
+
+    <!--label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Study ID</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.studyID" readonly/>
+        </div>
+      </div>
+    </label-->
+
+    <label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Device ID</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.deviceID" readonly/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Device Address</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.deviceAddress" readonly/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Device Name</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.deviceName" readonly/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Firmware ID</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.firmwareID" readonly/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Sensor ID</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.sensorID" readonly/>
+        </div>
+      </div>
+    </label>
+
+    <!--label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Date</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.date"/>
+        </div>
+      </div> style="padding: 6px 0px 5px 0px;"
+    </label-->
+
+    <label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Location</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.location" readonly/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Sensor 1</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.sensor1" readonly/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Sensor 2</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.sensor2" readonly/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Sensor 3</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.sensor3" readonly/>
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Sensor 4</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.sensor4" readonly/>
+        </div>
+      </div>
+    </label>
+
+    <!--label class="item item-input item-range" ng-if="deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50" class="item-label">
+          <span class="input-label">Header</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="deviceDetails.device.header" readonly/>
+        </div>
+      </div>
+    </label-->
+
+  </ion-list>
+</ion-content>
+
+<ion-footer-bar class="j-button-footer" ng-if="connected && deviceDetails.device && deviceDetails.device !== {} && deviceDetails.loading === false">
+  <div class="j-button-cont j-button-cont-half j-button-cont-red" layout="row" layout-align="center center"
+       ng-click="deviceDetails.drop()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-ios-trash-outline j-button-icon"></i>
+      Remove
+    </a>
+  </div>
+  <div class="j-button-cont j-button-cont-half j-button-cont-green" layout="row" layout-align="center center"
+       ng-click="deviceDetails.device.label != '' && deviceDetails.save()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Done
+    </a>
+  </div>
+
+  <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green" ng-click="deviceDetails.drop()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Remove
+    </a>
+  </div>
+
+</ion-footer-bar>
+
+<ion-footer-bar class="j-button-footer" ng-if="connected && !deviceDetails.device || connected && deviceDetails.device === {}" ng-click="!deviceDetails.device && deviceDetails.add()" layout="row" layout-align="center center">
+  <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Add
+    </a>
+  </div>
+</ion-footer-bar>

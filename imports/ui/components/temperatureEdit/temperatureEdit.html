@@ -1,0 +1,21 @@
+
+<ion-content class="has-header has-footer j-grey-content-background">
+  <div class="list">
+    <label class="item item-input">
+      <div flex="70">
+        <span class="input-label">Convert fahrenheit to celsius?</span>
+      </div>
+      <div flex>
+        <ion-toggle ng-model="temperatureEdit.temperature.celsius" ng-checked="temperatureEdit.temperature.celsius" toggle-class="toggle-success" class="notification-edit-toggle"></ion-toggle>
+      </div>
+    </label>
+</ion-content>
+
+<ion-footer-bar class="j-button-footer" ng-click="temperatureEdit.update()" layout="row" layout-align="center center">
+  <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-edit j-button-icon"></i>
+      Update
+    </a>
+  </div>
+</ion-footer-bar>

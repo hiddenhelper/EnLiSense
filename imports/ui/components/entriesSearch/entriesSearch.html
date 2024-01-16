@@ -1,0 +1,74 @@
+<ion-content class="j-grey-content-background entries-search-content">
+
+  <div class="item item-divider">
+    Search
+  </div>
+
+  <div layout="row" class="j-search-box-cont">
+    <div flex="10" class="j-search-box-icon-cont" layout="row" layout-align="center center">
+      <i class="ion-ios-search search-box-icon"></i>
+    </div>
+    <div flex="70" class="j-search-box-search-cont">
+      <input placeholder="Search" ng-model="entriesSearch.searchTerm" class="j-search-box-search-box"></input>
+    </div>
+    <div flex="10" ng-if="entriesSearch.type === 'Exercise'" class="j-search-box-icon-cont j-search-box-barcode-cont" layout="row" layout-align="center center" ng-click="entriesSearch.scanBarcode()">
+    </div>
+    <div flex="10" ng-if="entriesSearch.searchTerm !== ''" class="j-search-box-icon-cont j-search-box-clear-cont" layout="row" layout-align="center center" ng-click="entriesSearch.clearSearch()">
+      <i class="ion-ios-close j-search-box-clear-icon"></i>
+    </div>
+    <div flex="10" ng-if="entriesSearch.searchTerm === ''" class="j-search-box-icon-cont j-search-box-clear-cont">
+    </div>
+    <div flex="10" ng-if="entriesSearch.type !== 'Exercise'" class="j-search-box-icon-cont j-search-box-barcode-cont" layout="row" layout-align="center center" ng-click="entriesSearch.scanBarcode()">
+      <i class="ion-ios-barcode-outline j-search-box-barcode-icon"></i>
+    </div>
+  </div>
+  <div class="item item-divider">
+    Results
+  </div>
+
+  <div layout="row" layout-align="center center" ng-if="entriesSearch.entries.length > 0">
+    <div flex="100">
+      <div class="j-search-box-repeated-item" dir-paginate="entry in entriesSearch.entries | itemsPerPage: entriesSearch.perPage" total-items="entriesSearch.entriesCount">
+
+        <div layout="row" layout-align="center center" class="j-search-box-res-cont">
+          <div flex="5" ng-click="entriesSearch.viewHandler('entryDetails',{'_id': entry._id, type: entriesSearch.type })">
+
+          </div>
+          <div flex="80" class="j-search-box-res-label" ng-click="entriesSearch.viewHandler('entryDetails',{'_id': entry._id, type: entriesSearch.type })" ng-if="entry.brand.trim() === ''">
+            {{ entry.name }}
+          </div>
+          <div flex="80" class="j-search-box-res-label" ng-click="entriesSearch.viewHandler('entryDetails',{'_id': entry._id, type: entriesSearch.type })" ng-if="entry.brand.trim() !== ''">
+            {{ entry.name }} ({{ entry.brand }})
+          </div>
+          <div flex="15" class="j-search-box-res-chk-box text-center">
+            <div ng-if="entriesSearch._.findWhere(entriesSearch.searchItem.selected, {'_id': entry._id}) !== undefined">
+              <!--ion-checkbox class="j-search-box-chk-box-bal" ng-checked="true" ng-click="entriesSearch.checkboxHandler(direction, entry._id)" ng-model="direction"></ion-checkbox-->
+              <input class="checkbox-round" ng-click="entriesSearch.checkboxHandler(false, entry._id)" type="checkbox" checked>
+            </div>
+            <div ng-if="entriesSearch._.findWhere(entriesSearch.searchItem.selected, {'_id': entry._id}) === undefined">
+              <!--ion-checkbox class="j-search-box-chk-box-bal" ng-checked="false" ng-click="entriesSearch.checkboxHandler(direction, entry._id)" ng-model="direction"></ion-checkbox-->
+              <input class="checkbox-round" ng-click="entriesSearch.checkboxHandler(direction, entry._id)" ng-model="direction" type="checkbox">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div layout="row" layout-align="center center">
+        <dir-pagination-controls class="j-search-box-pag-control" on-page-change="entriesSearch.pageChanged(newPageNumber)"></dir-pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <no-search-items-message ng-if="entriesSearch.entries.length === 0"></no-search-items-message>
+
+</ion-content>
+
+<ion-footer-bar class="j-button-footer"
+                layout="row"
+                layout-align="center center"
+                ng-click="entriesSearch.done()">
+  <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Add Contents
+    </a>
+  </div>

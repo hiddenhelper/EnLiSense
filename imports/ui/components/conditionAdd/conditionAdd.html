@@ -1,0 +1,100 @@
+<ion-content class="has-header has-footer j-grey-content-background">
+  <ion-list can-swipe="true">
+
+    <div class="item item-divider">
+      Label
+    </div>
+
+    <label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50">
+          <span class="input-label-name">Name</span>
+        </div>
+        <div flex="50">
+          <input class="input-label" type="text" ng-model="conditionAdd.condition.label"/>
+        </div>
+      </div>
+    </label>
+
+    <div class="item item-divider">
+      Details
+    </div>
+
+    <label class="item item-input">
+      <div class="row" style="padding: 0px;">
+        <div flex="40">
+          <span class="input-label">First Noticed Date</span>
+        </div>
+        <div flex="60">
+          <input type="month" class="input-month" ng-model="conditionAdd.condition.firstNoticedDate" placeholder="conditionAdd.condition.firstNoticedDate">
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input">
+      <div class="row" style="padding: 0px;">
+        <div flex="40">
+          <span class="input-label">Diagnosed Date</span>
+        </div>
+        <div flex="60">
+          <input type="month" class="input-month" ng-model="conditionAdd.condition.dignosedDate" placeholder="conditionAdd.condition.dignosedDate">
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input">
+      <div class="row" style="padding: 0px;">
+        <div flex="40">
+          <span class="input-label">Last Flare Date</span>
+        </div>
+        <div flex="60">
+          <input type="month" class="input-month" ng-model="conditionAdd.condition.lastFlareDate" placeholder="conditionAdd.condition.lastFlareDate">
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-select">
+      <div class="input-label">Severity</div>
+      <select class="form-control" ng-model="conditionAdd.condition.severity">
+        <option value="Remission">Remission</option>
+        <option value="Mild">Mild</option>
+        <option value="Moderate">Moderate</option>
+        <option value="Severe">Severe</option>
+      </select>
+    </label>
+
+    <!--ion-item class="item item-icon-right item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="40" class="item-label">
+          <span class="input-label">Severity</span>
+        </div>
+        <div flex="50">
+          <div class="item range range-assertive">
+            <input type="range" min="0" max="10" ng-model="conditionAdd.condition.severity"/>
+          </div>
+        </div>
+        <div flex="10" class="item-range-number">
+          {{ conditionAdd.condition.severity }}
+        </div>
+      </div>
+    </ion-item-->
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item j-notes-cont">
+      <textarea rows="5" ng-model="conditionAdd.condition.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+<ion-footer-bar class="j-button-footer" ng-click="conditionAdd.condition.label != '' && conditionAdd.add()" layout="row" layout-align="center center">
+  <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Add
+    </a>
+  </div>
+</ion-footer-bar>

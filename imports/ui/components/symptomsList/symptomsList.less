@@ -1,0 +1,95 @@
+symptoms-list {
+  .symptoms-list-content {
+    height: 100vh !important;
+    position: fixed;
+    padding-top: 64px;
+    padding-bottom: 44px;
+  }
+
+  .overflow-scroll {
+    &.keyboard-up:not(.keyboard-up-confirm) {
+      -webkit-overflow-scrolling: auto;
+    }
+  }
+
+  .keyboard-up{
+    height: auto !important;
+  }
+
+  .mbsc-sc-itm {
+    font-size: 18px !important;
+  }
+
+  .mbsc-select-input {
+    min-width: 100% !important;
+  }
+
+  .j-error-box {
+    border-style: solid;
+    border-color: red red red;
+    border-width: medium;
+  }
+
+  .j-item-symp-cont {
+    padding: 0px 0px 0px 0px;
+    min-height: 55px;
+  }
+  .j-input {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+  }
+
+  .j-item-symp-label {
+    margin-left: 20px;
+    min-width: 30%;
+    max-width: 30%;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .j-item-symp-score {
+    padding-left: 5px;
+  }
+
+  .j-item-symp-arrow-cont {
+    display:inline-block;
+  }
+
+  // Range and range labels
+  .range {
+    border: none;
+    background-color: rgba(0,0,0,0);
+  }
+
+  .range-cont {
+    position: relative;
+  }
+
+  .range-labels {
+    position: absolute;
+    z-index: 1;
+    bottom: 5px;
+    min-width: 100%;
+    font-size: 8px;
+    text-align: center;
+    color: rgba(0,0,0,0.25);
+  }
+
+  .range-labels-low {
+    text-align: left;
+    margin-left: 14px;
+  }
+
+  .range-labels-high {
+    text-align: right;
+    margin-right: 14px;
+  }
+
+}
+
+@import '../symptomAdd/symptomAdd.less';
+@import '../symptomDetails/symptomDetails.less';

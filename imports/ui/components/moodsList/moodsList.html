@@ -1,0 +1,131 @@
+<ion-content class="j-grey-content-background moods-list-content">
+  <ion-list>
+
+    <div class="item item-divider">
+      Time
+    </div>
+
+    <ion-item class="item" ng-class="{true: 'j-border-color-red'}[moodsList.copy === true]">
+      <div layout="row"
+           class="j-item-entry-cont"
+           ng-model="moodsList.item.entryTimestamp"
+           mobiscroll-datetime="moodsList.datetimeSettings"
+           mobiscroll-instance="datetimeInstance">
+        <div flex="10">
+          <i class="ion-ios-clock-outline j-item-entry-icon"></i>
+        </div>
+        <div flex="40" class="j-item-entry-time">
+          {{moodsList.item.entryTimestamp | displayTimeFilter}}
+        </div>
+        <div flex="50" class="j-item-entry-date">
+          {{moodsList.item.entryTimestamp | displayDateFilter}}
+        </div>
+      </div>
+    </ion-item>
+
+    <div class="item item-divider">
+      Moods
+    </div>
+
+    <label class="item item-input item-select">
+      <label>
+        <div class="input-label" style="min-width: 340px;">I am feeling</div>
+        <select mobiscroll-select="moodsList.scrollerSettings"
+                placeholder="{{ moodsList.item.mood }}"
+                mobiscroll-instance="sleepQuality"
+                ng-model="moodsList.item.mood">
+          <option ng-repeat="st in moodsList.moodOptions"
+                  value="{{ st.label }}">
+            {{ st.label }}
+          </option>
+        </select>
+      </label>
+    </label>
+
+    <!-- new mood -->
+    <!--ion-item class="item j-item-new-cont">
+      <div layout="row"
+           layout-align="center center"
+           class="j-item-new-button"
+           ng-click="moodsList.viewHandler('moodAdd',{'_id': moodsList._id })">
+        <div flex="100">
+          <i class="icon ion-plus"></i>
+        </div>
+      </div>
+    </ion-item-->
+
+    <!-- template -->
+    <div ng-repeat="mood in moodsList.viewCacheService.moodItem.moods">
+      <ion-item class="item item-icon-right j-item-symp-cont">
+        <div layout="row" layout-align="center center">
+          <div flex="30" class="j-item-symp-label">
+            {{ mood.label }}
+          </div>
+          <div flex="50">
+            <div layout="column" class="range-cont">
+              <div class="item range range-positive">
+                <input type="range" min="0" max="10" ng-model="mood.score"/>
+              </div>
+              <div layout="row" layout-align="center center" class="range-labels">
+                <div class="range-labels-low" flex> Low </div>
+                <div flex> Med </div>
+                <div class="range-labels-high" flex> High </div>
+              </div>
+            </div>
+          </div>
+          <div flex="10" class="j-item-symp-score">
+            {{ mood.score }}
+          </div>
+          <div ng-if="mood.valid === true" flex="10" class="j-item-symp-arrow-cont" ng-click="moodsList.viewHandler('moodDetails',{'moodId': mood._id, '_id': moodsList._id })">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+          <div ng-if="mood.valid === false" flex="10" class="j-item-symp-arrow-cont" ng-click="moodsList.viewHandler('moodDetails',{'moodId': mood._id, '_id': moodsList._id, 'warning': true})">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
+      </ion-item>
+    </div>
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item j-notes-cont">
+      <textarea rows="5" ng-model="moodsList.viewCacheService.moodItem.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+<ion-footer-bar class="j-button-footer">
+
+  <!-- Existing Item -->
+  <div ng-if="moodsList._id !== undefined && moodsList.copy === false"
+       class="j-button-cont j-button-cont-half j-button-cont-red"
+       layout="row" layout-align="center center"
+       ng-click="moodsList.dropButton()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-ios-trash-outline j-button-icon"></i>
+      Delete
+    </a>
+  </div>
+  <div ng-if="moodsList._id !== undefined && moodsList.copy === false"
+       class="j-button-cont j-button-cont-half j-button-cont-green"
+       layout="row" layout-align="center center"
+       ng-click="moodsList.update(moodsList.viewCacheService.moodItem.moods)">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Update
+    </a>
+  </div>
+
+  <div ng-if="moodsList._id === undefined || moodsList.copy === true"
+       ng-click="moodsList.submit(moodsList.viewCacheService.moodItem.moods)"
+       layout="row" layout-align="center center"
+       class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Submit
+    </a>
+  </div>
+</ion-footer-bar>

@@ -1,0 +1,18 @@
+<div class="bar bar-subheader date-picker-container-outer">
+  <div layout="row" layout-align="space-between center" class="date-picker-container-inner">
+    <div flex="30" class="date-previous" ng-click="reportDatePicker.previous()">
+      <i class="ion-ios-arrow-left"></i>
+      <b>Previous</b>
+    </div>
+    <div flex="40" layout="row" layout-align="center center" class="date-title"
+         ng-model="reportDatePicker.today"
+         mobiscroll-calendar="reportDatePicker.reportCalendarSettings"
+         mobiscroll-instance="demo">
+      {{ reportDatePicker.today | displayDateFilter }}
+    </div>
+    <div flex="30" class="date-next" ng-click="reportDatePicker.next()">
+      <b>Next</b>
+      <i class="ion-ios-arrow-right"></i>
+    </div>
+  </div>
+</div>

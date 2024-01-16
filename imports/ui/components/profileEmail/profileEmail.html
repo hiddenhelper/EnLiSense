@@ -1,0 +1,29 @@
+
+<ion-content class="has-header j-grey-content-background profile-email-content" ng-class="{true: 'has-footer'}[profileEmail.connected]">
+  <div class="list" ng-if="profileEmail.connected">
+    <label class="item item-input">
+      <span class="input-label">Current</span>
+      <span style="text-align: left" >{{ profileEmail.currentEmail | displayEmailFilter }}</span>
+    </label>
+    <label class="item item-input">
+      <span class="input-label">New</span>
+      <input type="password" ng-model="profileEmail.newEmail">
+    </label>
+    <label ng-if="profileEmail.error === true" class="item item-input j-warning-cont">
+      <span class="input-label j-warning-label">Error with email address, please try again</span>
+    </label>
+  </div>
+
+  <div ng-if="!profileEmail.connected">
+    <offline-message></offline-message>
+  </div>
+</ion-content>
+
+<ion-footer-bar ng-if="profileEmail.connected" class="j-button-footer" ng-click="profileEmail.update()" layout="row" layout-align="center center">
+  <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green" >
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-edit j-button-icon"></i>
+      Change
+    </a>
+  </div>
+</ion-footer-bar>

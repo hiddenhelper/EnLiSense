@@ -1,0 +1,67 @@
+
+<ion-content class="has-header has-footer j-grey-content-background">
+  <ion-list can-swipe="true">
+    <div class="item item-divider" ng-if="moodDetails.warning === true">
+      Notice
+    </div>
+
+    <label class="item item-input" ng-if="moodDetails.warning === true">
+      <span class="input-label">Warning</span>
+      <p class="j-item-symp-cont">
+        Restore deleted item?
+      </p>
+    </label>
+
+    <div class="item item-divider">
+      Labels
+    </div>
+
+    <label class="item item-input">
+      <span class="input-label">Name</span>
+      <input type="text" ng-model="moodDetails.mood.label">
+    </label>
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item j-notes-cont">
+      <textarea rows="5" ng-model="moodDetails.mood.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer-bar class="j-button-footer">
+  <div class="j-button-cont j-button-cont-half j-button-cont-red"
+       layout="row"
+       layout-align="center center"
+       ng-click="moodDetails.drop()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-ios-trash-outline j-button-icon"></i>
+      Delete
+    </a>
+  </div>
+  <div ng-if="moodDetails.warning === false"
+       class="j-button-cont j-button-cont-half j-button-cont-green"
+       layout="row"
+       layout-align="center center"
+       ng-click="moodDetails.mood.label != '' && moodDetails.save()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Update
+    </a>
+  </div>
+
+  <div ng-if="moodDetails.warning === true"
+       class="j-button-cont j-button-cont-half j-button-cont-green"
+       layout="row"
+       layout-align="center center"
+       ng-click="moodDetails.mood.label != '' && moodDetails.restore()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Restore
+    </a>
+  </div>
+</ion-footer-bar>

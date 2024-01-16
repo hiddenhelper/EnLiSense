@@ -1,0 +1,125 @@
+<ion-content class="j-grey-content-background sleep-item-content">
+  <ion-list>
+
+    <div class="item item-divider">
+      Time
+    </div>
+
+    <ion-item class="item" ng-class="{true: 'j-border-color-red'}[sleepItem.copy === true]">
+      <div layout="row" class="entry"
+           ng-model="sleepItem.item.sleepTimestamp"
+           mobiscroll-datetime="sleepItem.datetimeSettings"
+           mobiscroll-instance="datetimeInstance1">
+        <div flex="10">
+          <i class="icon ion-ios-moon j-sleep-entry-time-icon"></i>
+        </div>
+        <div flex="30" class="entry-text" layout="row" layout-align="start center">
+          <p>
+          Sleep
+          </p>
+        </div>
+        <div flex="20"
+             layout="row" layout-align="start center"
+             class="j-sleep-entry-time">
+          <p>
+          {{sleepItem.item.sleepTimestamp | displayTimeFilter}}
+          </p>
+        </div>
+        <div flex="40"
+             layout="row" layout-align="end center"
+             class="j-sleep-entry-date">
+          <p>
+          {{sleepItem.item.sleepTimestamp | displayDateFilter}}
+          </p>
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item class="item">
+      <div layout="row" class="entry"
+           ng-model="sleepItem.item.entryTimestamp"
+           mobiscroll-datetime="sleepItem.datetimeSettings"
+           mobiscroll-instance="datetimeInstance2">
+        <div flex="10">
+          <i class="icon ion-ios-sunny-outline j-sleep-entry-time-icon"></i>
+        </div>
+        <div flex="30" class="entry-text" layout="row" layout-align="start center">
+          <p>
+          Awake
+          </p>
+        </div>
+        <div flex="20" layout="row" layout-align="start center" class="j-sleep-entry-time">
+          <p>
+          {{sleepItem.item.entryTimestamp | displayTimeFilter}}
+          </p>
+        </div>
+        <div flex="40" layout="row" layout-align="end center" class="j-sleep-entry-date">
+          <p>
+          {{sleepItem.item.entryTimestamp | displayDateFilter}}
+          </p>
+        </div>
+      </div>
+    </ion-item>
+
+    <div class="item item-divider">
+      Scale
+    </div>
+
+    <label class="item item-input item-select">
+      <label>
+        <div class="input-label" style="min-width: 340px;">Sleep Quality</div>
+        <select mobiscroll-select="sleepItem.scrollerSettings"
+                placeholder="{{ sleepItem.item.quality }}"
+                mobiscroll-instance="sleepQuality"
+                ng-model="sleepItem.item.quality">
+          <option ng-repeat="st in sleepItem.sleepOptions"
+                  value="{{ st.label }}">
+            {{ st.label }}
+          </option>
+        </select>
+      </label>
+    </label>
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item j-notes-cont">
+      <textarea rows="5" ng-model="sleepItem.item.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+<ion-footer-bar class="j-button-footer">
+
+  <!-- Existing Item -->
+  <div ng-if="sleepItem._id !== undefined && sleepItem.copy === false"
+       class="j-button-cont j-button-cont-half j-button-cont-red"
+       layout="row" layout-align="center center"
+       ng-click="sleepItem.drop()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-ios-trash-outline j-button-icon"></i>
+      Delete
+    </a>
+  </div>
+  <div ng-if="sleepItem._id !== undefined && sleepItem.copy === false"
+       class="j-button-cont j-button-cont-half j-button-cont-green"
+       layout="row" layout-align="center center"
+       ng-click="sleepItem.update()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Update
+    </a>
+  </div>
+
+  <div ng-if="sleepItem._id === undefined || sleepItem.copy === true"
+       ng-click="sleepItem.submit()"
+       layout="row" layout-align="center center"
+       class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Submit
+    </a>
+  </div>
+</ion-footer-bar>

@@ -1,0 +1,51 @@
+
+<ion-content class="has-header has-footer j-grey-content-background symptoms-add-content">
+  <ion-list can-swipe="true">
+
+    <div class="item item-divider">
+      Labels
+    </div>
+
+    <label class="item item-input">
+      <span class="input-label">Name</span>
+      <input type="text" ng-model="symptomAdd.symptom.label">
+    </label>
+
+    <label class="item item-input" ng-if="symptomAdd.conditionsCount > 0">
+      <span class="input-label">Condition</span>
+      <select mobiscroll-select="symptomAdd.scrollerSettings"
+              placeholder="{{ symptomAdd.symptom.condition }}"
+              mobiscroll-instance="demo"
+              ng-model="symptomAdd.symptom.condition">
+        <option ng-repeat="condition in symptomAdd.conditions"
+                value="{{ condition.label }}">
+          {{ condition.label }}
+        </option>
+      </select>
+    </label>
+
+
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item j-notes-cont">
+      <textarea rows="5" ng-model="symptomAdd.symptom.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer-bar class="j-button-footer"
+                layout="row" layout-align="center center"
+                ng-click="symptomAdd.symptom.label != '' && symptomAdd.submit()">
+  <div layout="row" layout-align="center center"
+       class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Add Symptom
+    </a>
+  </div>
+</ion-footer-bar>

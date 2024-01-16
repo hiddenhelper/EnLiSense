@@ -1,0 +1,175 @@
+<report-date-picker today="report.$scope.currentDate" next="report.nextDay()" previous="report.previousDay()" ng-if="report.loadingInfo !== true && connected"></report-date-picker>
+
+<ion-content class="has-header has-footer j-grey-content-background"  overflow-scroll="true" >
+
+    <div class="j-no-res-warn-cont" ng-if="report.loadingInfo !== true && reportTodayData === false && connected">
+      <div class="j-no-res-warn-icon-cont j-no-res-warn-icon">
+        <i class="icon ion-ios-pulse"></i>
+      </div>
+      <div class="j-no-res-warn-message-cont">
+        <p class="j-no-res-warn-message-header">
+          No data. Please add a device or sync.
+        </p>
+      </div>
+    </div>
+
+    <div class="j-no-res-warn-cont animate-if" ng-if="report.loadingInfo === true && connected">
+      <div>
+        <div>
+            <img class="j-loader" ng-src="/img/loader.gif" />
+        </div>
+      </div>
+      <div class="j-no-res-warn-message-cont">
+        <p class="j-no-res-warn-message-header">
+          {{ report.loaderMessage }}
+        </p>
+      </div>
+    </div>
+
+    <!--div class="j-no-res-warn-cont-reports" ng-if="!report.device && reports && connected">
+      <div class="j-no-res-warn-icon-cont j-no-res-warn-icon">
+        <i class="icon ion-ios-pulse"></i>
+      </div>
+      <div class="j-no-res-warn-message-cont">
+        <p class="j-no-res-warn-message-header">
+          Please add a device to sync
+        </p>
+      </div>
+    </div-->
+
+    <div ng-if="!connected" class="animate-if">
+      <offline-message></offline-message>
+    </div>
+
+    <div ng-if="report.loadingInfo !== true && connected" style="min-height: 26px">
+      <br>
+    </div>
+
+
+    <div class="card" ng-if="report.loadingInfo !== true && connected && reportTodayData === true" style="margin-bottom: 5px;">
+
+        <div style="text-overflow: clip; font-size: 20px;" class="item item-divider">
+            {{graphBoxTitle}}
+        </div>
+        <!--div class="button-bar">
+            <a class="button d-flex align-items-center" ng-click="timeFilter(4)" style="text-overflow: clip;">4H</a>
+            <a class="button d-flex align-items-center" ng-click="timeFilter(8)" style="text-overflow: clip;">8H</a>
+            <a class="button d-flex align-items-center" ng-click="timeFilter(12)" style="text-overflow: clip;">12H</a>
+            <a class="button d-flex align-items-center" ng-click="timeFilter(16)" style="text-overflow: clip;">16H</a>
+            <a class="button d-flex align-items-center" ng-click="timeFilter(24)" style="text-overflow: clip;">24H</a>
+            <a class="button d-flex align-items-center" ng-click="timeFilter(0)" style="text-overflow: clip;">All</i></a>
+        </div-->
+        <div class="item item-text-wrap chart-box">
+          <!--canvas id="line" class="chart chart-line" chart-data="data"
+          chart-labels="labels" chart-series="series" chart-options="options"
+          chart-dataset-override="datasetOverride" chart-click="onClick"
+          chart-colors="colors">
+          </canvas-->
+          <div class="j-no-res-warn-cont-report animate-if" ng-if="report.showReportLoader === true">
+            <div>
+              <div>
+                  <img class="j-loader" ng-src="/img/loader.gif" />
+              </div>
+            </div>
+          </div>
+          <canvas id="line" class="graph-canvas" ng-if="report.showReportLoader === false"></canvas>
+        </div>
+        <div class="button-bar">
+            <a class="button d-flex align-items-center" ng-class="graphBoxTitle === 'degC' ? 'active': ''" ng-click="updateGraph('degC', 'degC', 'Degrees Celsius')"><i class="icon ion-thermometer"></i></a>
+            <a class="button d-flex align-items-center" ng-class="graphBoxTitle === 'RH' ? 'active': ''" ng-click="updateGraph('RH', 'rh', 'Perspiration')"><i class="icon ion-waterdrop"></i></a>
+            <a class="button d-flex align-items-center" ng-class="graphBoxTitle === '{{ keysShort['s1'] }}' ? 'active': ''" ng-click="updateGraph(keys['s1'], 'glucose1')" style="font-size:smaller; text-overflow: clip; font-weight: bold;">{{ keysShort['s1'] }}</a>
+            <a class="button d-flex align-items-center" ng-class="graphBoxTitle === '{{ keysShort['s2'] }}' ? 'active': ''" ng-click="updateGraph(keys['s2'], 'glucose2')" style="font-size:smaller; text-overflow: clip; font-weight: bold;">{{ keysShort['s2'] }}</a>
+            <a class="button d-flex align-items-center" ng-class="graphBoxTitle === '{{ keysShort['s3'] }}' ? 'active': ''" ng-click="updateGraph(keys['s3'], 'glucose3')" style="font-size:smaller; text-overflow: clip; font-weight: bold;">{{ keysShort['s3'] }}</a>
+            <a class="button d-flex align-items-center" ng-class="graphBoxTitle === '{{ keysShort['s4'] }}' ? 'active': ''" ng-click="updateGraph(keys['s4'], 'glucose4')" style="font-size:smaller; text-overflow: clip; font-weight: bold;">{{ keysShort['s4'] }}</a>
+        </div>
+    </div>
+
+    <div class="card" ng-if="report.loadingInfo !== true && connected && reportTodayData === true" style="margin-top: 1px;">
+        <div style="text-overflow: clip; font-size: 20px;" class="item item-divider">
+            Daily Stats
+        </div>
+
+        <ion-list ng-if="report.showReportLoader === false">
+          <ion-item class="item item-label" style="padding-top: 8px; padding-bottom: 8px;">
+            <div layout="row" layout-align="center center" >
+              <div flex="50" >
+                <span class="input-label">Moving Average</span>
+              </div>
+              <div flex="50" style="margin-right: 10px;">
+                <input style="text-align: right; font-size: 15px;" type="text" ng-model="average" readonly/>
+              </div>
+            </div>
+          </ion-item>
+
+          <ion-item class="item item-label" style="padding-top: 8px; padding-bottom: 8px;">
+            <div layout="row" layout-align="center center" >
+              <div flex="50" >
+                <span class="input-label">Standard Deviation</span>
+              </div>
+              <div flex="50" style="margin-right: 10px;">
+                <input style="text-align: right; font-size: 15px;" type="text" ng-model="stdDev" readonly/>
+              </div>
+            </div>
+          </ion-item>
+
+          <ion-item class="item item-label" style="padding-top: 8px; padding-bottom: 8px;">
+            <div layout="row" layout-align="center center" >
+              <div flex="50" >
+                <span class="input-label">Maximum</span>
+              </div>
+              <div flex="50" style="margin-right: 10px;">
+                <input style="text-align: right; font-size: 15px;" type="text" ng-model="maximum" readonly/>
+              </div>
+            </div>
+          </ion-item>
+
+          <ion-item class="item item-label" style="padding-top: 8px; padding-bottom: 8px;">
+            <div layout="row" layout-align="center center" >
+              <div flex="50" >
+                <span class="input-label">Minimum</span>
+              </div>
+              <div flex="50" style="margin-right: 10px;">
+                <input style="text-align: right; font-size: 15px;" type="text" ng-model="minimum" readonly/>
+              </div>
+            </div>
+          </ion-item>
+
+          <!--ion-item class="item item-label" style="adding-right: 0px; padding-top: 8px; padding-bottom: 8px;">
+            <div layout="row" layout-align="center center" >
+              <div flex="50" >
+                <span class="input-label">%CV</span>
+              </div>
+              <div flex="50" style="margin-right: 10px;">
+                <input style="text-align: right; font-size: 15px;" type="text" ng-model="cv" readonly/>
+              </div>
+            </div>
+          </ion-item-->
+        </ion-list>
+    </div>
+</ion-content>
+
+
+<ion-footer-bar class="j-button-footer j-button-footer-up"
+                ng-if="report.loadingInfo !== true && !report.deviceReady && report.device && connected"
+                layout="row" layout-align="center center">
+    <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-gray">
+        <a class="j-button-text">
+            <i class="icon ion-android-sync j-button-icon"></i>
+            Sync Disabled
+        </a>
+    </div>
+    <br><br>
+</ion-footer-bar>
+
+<ion-footer-bar class="j-button-footer j-button-footer-up"
+                ng-click="newReport()"
+                ng-if="report.loadingInfo !== true && report.deviceReady && report.device && connected"
+                layout="row" layout-align="center center">
+    <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green">
+        <a class="j-button-text">
+            <i class="icon ion-android-sync j-button-icon"></i>
+            Sync
+        </a>
+    </div>
+    <br><br>
+</ion-footer-bar>

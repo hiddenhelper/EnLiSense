@@ -1,0 +1,87 @@
+
+<ion-content class="has-header has-footer j-grey-content-background">
+  <div class="list">
+
+    <label class="item item-input">
+      <div layout="row" layout-align="center center" class="j-socialhist-item-cont ">
+          <div flex="55" class="item-label">
+            Relationship
+          </div>
+          <div flex="45" class="mobi-input">
+            <input type="text"
+                   ng-model="socialHistory.socialHistory.relationship"
+                   mobiscroll-scroller="socialHistory.relationshipScrollerSettings"
+                   mobiscroll-instance="relationshipScrollerInstance" >
+          </div>
+      </div>
+    </label>
+
+    <label class="item item-input">
+      <div layout="row" layout-align="center center" class="j-socialhist-item-cont ">
+          <div flex="55" class="item-label">
+            Housing Type
+          </div>
+          <div flex="45">
+            <input type="text"
+                   ng-model="socialHistory.socialHistory.housingType"
+                   mobiscroll-scroller="socialHistory.housingTypeScrollerSettings"
+                   mobiscroll-instance="housingTypeScrollerInstance" >
+          </div>
+      </div>
+    </label>
+
+    <label class="item item-input">
+      <div layout="row" layout-align="center center" class="j-socialhist-item-cont ">
+          <div flex="55" class="item-label">
+            Occupation
+          </div>
+          <div flex="45">
+            <input type="text" ng-model="socialHistory.socialHistory.occupation">
+          </div>
+      </div>
+    </label>
+
+    <label class="item item-input">
+      <div layout="row" layout-align="center center" class="j-socialhist-item-cont ">
+          <div flex="55" class="item-label">
+            Do you smoke?
+          </div>
+          <div flex="45">
+            <input type="text"
+                   ng-model="socialHistory.socialHistory.currentSmoker"
+                   mobiscroll-scroller="socialHistory.currentSmokerScrollerSettings"
+                   mobiscroll-instance="currentSmokerScrollerInstance" >
+          </div>
+      </div>
+    </label>
+
+    <label class="item item-input">
+      <div layout="row" layout-align="center center" class="j-socialhist-item-cont ">
+          <div flex="55" class="item-label">
+            Former smoker?
+          </div>
+          <div flex="45">
+            <input type="text"
+                   ng-model="socialHistory.socialHistory.formerSmoker"
+                   mobiscroll-scroller="socialHistory.formerSmokerScrollerSettings"
+                   mobiscroll-instance="formerSmokerScrollerInstance" >
+          </div>
+      </div>
+    </label>
+
+  </div>
+
+</ion-content>
+
+
+<ion-footer-bar class="j-button-footer"
+                ng-click="socialHistory.update()"
+                layout="row" layout-align="center center">
+  <div layout="row" layout-align="center center"
+       class="j-button-cont j-button-cont-full j-button-cont-green" >
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-edit j-button-icon"></i>
+      Update
+    </a>
+  </div>
+</ion-footer-bar>

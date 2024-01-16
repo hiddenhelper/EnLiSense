@@ -1,0 +1,110 @@
+
+<ion-content class="has-header has-footer j-grey-content-background">
+  <ion-list can-swipe="true">
+    <div class="item item-divider" ng-if="conditionDetails.warning === true">
+      Notice
+    </div>
+
+    <label class="item item-input" ng-if="conditionDetails.warning === true">
+      <span class="input-label">Warning</span>
+      <p class="restore-del-text">
+        Restore deleted item?
+      </p>
+    </label>
+
+    <div class="item item-divider">
+      Label
+    </div>
+
+    <label class="item item-input item-range">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50">
+          <span class="input-label-name">Name</span>
+        </div>
+        <div flex="50">
+          <input type="text" ng-model="conditionDetails.condition.label"/>
+        </div>
+      </div>
+    </label>
+
+    <div class="item item-divider">
+      Details
+    </div>
+
+    <label class="item item-input">
+      <div class="row" style="padding: 0px;">
+        <div flex="50">
+          <span class="input-label">First Noticed Date</span>
+        </div>
+        <div flex="50">
+          <input type="month" class="input-month" ng-model="conditionDetails.condition.firstNoticedDate" placeholder="conditionDetails.condition.firstNoticedDate">
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input">
+      <div class="row" style="padding: 0px;">
+        <div flex="50">
+          <span class="input-label">Diagnosed Date</span>
+        </div>
+        <div flex="50">
+          <input type="month" class="input-month" ng-model="conditionDetails.condition.dignosedDate" placeholder="conditionDetails.condition.dignosedDate">
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input">
+      <div class="row" style="padding: 0px;">
+        <div flex="50">
+          <span class="input-label">Last Flare Date</span>
+        </div>
+        <div flex="50">
+          <input type="month" class="input-month" ng-model="conditionDetails.condition.lastFlareDate" placeholder="conditionDetails.condition.lastFlareDate">
+        </div>
+      </div>
+    </label>
+
+    <label class="item item-input item-select">
+      <div layout="row" layout-align="center center" class="item-container">
+        <div flex="50">
+          <div class="input-label">Severity</div>
+        </div>
+        <div flex="50">
+          <select class="form-control select-align-left" ng-model="conditionDetails.condition.severity">
+            <option value="Remission">Remission</option>
+            <option value="Mild">Mild</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Severe">Severe</option>
+          </select>
+        </div>
+      </div>
+    </label>
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item item-notes">
+      <textarea rows="5" ng-model="conditionDetails.condition.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer-bar class="j-button-footer">
+  <div class="j-button-cont j-button-cont-half j-button-cont-red" layout="row" layout-align="center center"
+       ng-click="conditionDetails.drop()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-ios-trash-outline j-button-icon"></i>
+      Delete
+    </a>
+  </div>
+  <div class="j-button-cont j-button-cont-half j-button-cont-green" layout="row" layout-align="center center"
+       ng-click="conditionDetails.condition.label != '' && conditionDetails.save()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Update
+    </a>
+  </div>
+</ion-footer-bar>

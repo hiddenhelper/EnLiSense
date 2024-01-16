@@ -1,0 +1,37 @@
+<ion-content class="has-header has-footer j-grey-content-background">
+
+  <div ng-if="!connected" class="animate-if">
+    <offline-message></offline-message>
+  </div>
+
+  <ion-list ng-if="connected">
+
+    <div class="item item-divider">
+    Available Devices
+    </div>
+
+    <!-- template -->
+    <div ng-if="bluetoothList.devices.length > 0" ng-repeat="device in bluetoothList.devices">
+      <ion-item class="item item-icon-right item-device">
+        <div layout="row" layout-align="center center" ng-click="bluetoothList.viewHandler('deviceAdd',{deviceAddress: device.id, name: device.name})">
+          <div flex="85">
+            <li class="item-device-label"><p>{{ device.name }} ({{ device.id }})</p></li>
+          </div>
+          <div flex-offset="5" flex="10" class="item-mood-arrow">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
+      </ion-item>
+    </div>
+
+  </ion-list>
+</ion-content>
+
+<ion-footer-bar class="j-button-footer" ng-click="bluetoothList.refresh()" layout="row" layout-align="center center" ng-if="connected">
+  <div layout="row" layout-align="center center" class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Refresh
+    </a>
+  </div>
+</ion-footer-bar>

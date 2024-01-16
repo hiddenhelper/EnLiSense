@@ -1,0 +1,28 @@
+<ion-modal-view class="email-model">
+    <ion-header-bar class="bar-dark">
+        <div class="buttons">
+            <a class="button icon-left ion-close" ng-click="closeModal()"></a>
+        </div>
+        <h1 class="title">Send Email</h1>
+    </ion-header-bar>
+    <ion-content>
+        <form name="emailForm" class="padding">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="email" multiple placeholder="To" ng-model="email.to" required>
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Subject" ng-model="email.subject" required>
+                </label>
+            </div>
+            <button class="button" style="margin-bottom: 4px;" ng-repeat="file in selectedFiles">
+                <i class="icon ion-document-text"></i> {{file.name}}
+            </button>
+
+            <button class="button button-full button-balanced" ng-disabled="sendingEmail" ng-click="sendEmail()">{{sendingEmail ? 'Sending...': 'Send Email' }}</button>
+            <div class="assertive" ng-if="emailError">
+                Something went wrong!
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

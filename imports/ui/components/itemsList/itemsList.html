@@ -1,0 +1,309 @@
+<journal-date-picker today="itemsList.$scope.currentDate" next="itemsList.nextDay()" previous="itemsList.previousDay()" update="itemsList.updateDay(val)"></journal-date-picker>
+
+<ion-content class="has-header has-subheader has-footer items-list-container">
+  <div layout="row">
+    <div class="list items-list-div">
+      <div class="card" ng-repeat="item in itemsList.joinedItems">
+
+        <!-- SYMPTOMS - START -->
+        <div layout="row" ng-if="item.entryType == 'Symptom'" ng-click="itemsList.viewHandler('symptomsList',{'_id': item._id })">
+          <div flex="20" layout="row" layout-align="center center">
+            <h4 class="items-list-time">
+              {{item.entryTimestamp | displayTimeFilter}}
+            <h4>
+          </div>
+          <div flex="15" layout="row" layout-align="center center">
+            <a class="icon-circle icon-circle-outline items-list-icon">
+              <i class="icon j-icon-warning3 icon-symptoms"></i>
+            </a>
+          </div>
+          <div flex="26" class="item">
+            <h2>
+              Symptom
+            </h2>
+          </div>
+          <div flex="27" class="item">
+            <div ng-if="item.surveyData.score">
+              <p>
+                PRO2: {{ item.surveyData.score }}
+              </p>
+            </div>
+          </div>
+            <!--div>
+              <div ng-repeat="symptom in item.symptoms">
+                <div ng-if="symptom.score != 0">
+                  <p>
+                    {{ symptom.label }} ({{ symptom.score }})
+                  </p>
+                </div>
+              </div>
+            </div-->
+          <div flex="5" layout="row" layout-align="center center">
+            <i class="icon ion-chevron-right items-list-chevron-right"></i>
+          </div>
+        </div>
+        <!-- SYMPTOMS - END -->
+
+        <!-- FOOD - START -->
+        <div layout="row" ng-if="item.entryType == 'Food'" ng-click="itemsList.viewHandler('entriesItem',{_id: item._id, type: item.entryType})">
+          <div flex="20" layout="row" layout-align="center center">
+            <h4 class="items-list-time">
+              {{item.entryTimestamp | displayTimeFilter}}
+            <h4>
+          </div>
+          <div flex="15" layout="row" layout-align="center center">
+            <a class="icon-circle icon-circle-outline items-list-icon">
+              <i class="icon icon-food j-icon-hot-food"></i>
+            </a>
+          </div>
+          <div flex="60" class="item">
+            <h2 ng-if="item.meal !== ''">
+              {{ item.meal }}
+            </h2>
+            <h2 ng-if="item.meal === ''">
+              {{ item.entryType }}
+            </h2>
+            <div>
+              <div ng-repeat="child in item.selected">
+                <p ng-if="child.brand.trim() !== '' && child.brand !== undefined">
+                  {{ child.name }} ({{ child.brand }})
+                </p>
+                <p ng-if="child.brand.trim() === '' || child.brand === undefined">
+                  {{ child.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div flex="5" layout="row" layout-align="center center">
+              <i class="icon ion-chevron-right items-list-chevron-right"></i>
+          </div>
+        </div>
+        <!-- FOOD - END -->
+
+        <!-- DRINK - START -->
+        <div layout="row" ng-if="item.entryType == 'Drink'" ng-click="itemsList.viewHandler('entriesItem',{_id: item._id, type: item.entryType})">
+          <div flex="20" layout="row" layout-align="center center">
+            <h4 class="items-list-time">
+              {{item.entryTimestamp | displayTimeFilter}}
+            <h4>
+          </div>
+          <div flex="15" layout="row" layout-align="center center">
+            <a class="icon-circle icon-circle-outline items-list-icon">
+              <i class="icon icon-drink j-icon-drink2"></i>
+            </a>
+          </div>
+          <div flex="60" class="item">
+            <h2>
+              {{ item.entryType }}
+            </h2>
+            <div>
+              <div ng-repeat="child in item.selected">
+                <p ng-if="child.brand.trim() !== '' && child.brand !== undefined">
+                  {{ child.name }} ({{ child.brand }})
+                </p>
+                <p ng-if="child.brand.trim() === '' || child.brand === undefined">
+                  {{ child.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div flex="5" layout="row" layout-align="center center">
+              <i class="icon ion-chevron-right items-list-chevron-right"></i>
+          </div>
+        </div>
+        <!-- DRINK - END -->
+
+        <!-- MEDICATION - START -->
+        <div layout="row" ng-if="item.entryType == 'Medication'" ng-click="itemsList.viewHandler('entriesItem',{_id: item._id, type: item.entryType})">
+          <div flex="20" layout="row" layout-align="center center">
+            <h4 class="items-list-time">
+              {{item.entryTimestamp | displayTimeFilter}}
+            <h4>
+          </div>
+          <div flex="15" layout="row" layout-align="center center">
+            <a class="icon-circle icon-circle-outline items-list-icon">
+              <i class="icon icon-medication j-icon-medicine-bottle"></i>
+            </a>
+          </div>
+          <div flex="60" class="item">
+            <h2>
+              {{ item.entryType }}
+            </h2>
+            <div>
+              <div ng-repeat="child in item.selected">
+                <p ng-if="child.brand.trim() !== '' && child.brand !== undefined">
+                  {{ child.name }} ({{ child.brand }})
+                </p>
+                <p ng-if="child.brand.trim() === '' || child.brand === undefined">
+                  {{ child.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div flex="5" layout="row" layout-align="center center">
+              <i class="icon ion-chevron-right items-list-chevron-right"></i>
+          </div>
+        </div>
+        <!-- MEDICATION - END -->
+
+        <!-- EXERCISE - START -->
+        <div layout="row" ng-if="item.entryType == 'Exercise'" ng-click="itemsList.viewHandler('entriesItem',{_id: item._id, type: item.entryType})">
+          <div flex="20" layout="row" layout-align="center center">
+            <h4 class="items-list-time">
+              {{item.entryTimestamp | displayTimeFilter}}
+            <h4>
+          </div>
+          <div flex="15" layout="row" layout-align="center center">
+            <a class="icon-circle icon-circle-outline items-list-icon">
+              <i class="icon icon-exercise j-icon-situp"></i>
+            </a>
+          </div>
+          <div flex="60" class="item">
+            <h2>
+              {{ item.entryType }}
+            </h2>
+            <div>
+              <div ng-repeat="child in item.selected">
+                <p ng-if="child.brand.trim() !== '' && child.brand !== undefined">
+                  {{ child.name }} ({{ child.brand }})
+                </p>
+                <p ng-if="child.brand.trim() === '' || child.brand === undefined">
+                  {{ child.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div flex="5" layout="row" layout-align="center center">
+              <i class="icon ion-chevron-right items-list-chevron-right"></i>
+          </div>
+        </div>
+        <!-- EXERCISE - END -->
+
+        <!-- SLEEP - START -->
+        <div layout="row" ng-if="item.entryType == 'Sleep'" ng-click="itemsList.viewHandler('sleepItem',{ _id: item._id })">
+          <div flex="20" layout="row" layout-align="center center">
+            <h4 class="items-list-time">
+              {{item.entryTimestamp | displayTimeFilter}}
+            <h4>
+          </div>
+          <div flex="15" layout="row" layout-align="center center">
+            <a class="icon-circle icon-circle-outline items-list-icon">
+              <i class="icon icon-sleep j-icon-sleep"></i>
+            </a>
+          </div>
+          <div flex="60" class="item">
+            <h2>
+              {{ item.entryType }}
+            </h2>
+            <!-- Sleep -->
+            <div>
+              <p>
+                '{{ item.quality }}' sleep for {{ item.duration | displayHourFilter}} hrs
+              </p>
+            </div>
+          </div>
+          <div flex="5" layout="row" layout-align="center center">
+              <i class="icon ion-chevron-right items-list-chevron-right"></i>
+          </div>
+        </div>
+        <!-- SLEEP - END -->
+
+        <!-- EVENT - START -->
+        <div layout="row" ng-if="item.entryType == 'Event'" ng-click="itemsList.viewHandler('entriesItem',{_id: item._id, type: item.entryType})">
+          <div flex="20" layout="row" layout-align="center center">
+            <h4 class="items-list-time">
+              {{item.entryTimestamp | displayTimeFilter}}
+            <h4>
+          </div>
+          <div flex="15" layout="row" layout-align="center center">
+            <a class="icon-circle icon-circle-outline items-list-icon">
+              <i class="icon icon-event j-icon-calendar"></i>
+            </a>
+          </div>
+          <div flex="60" class="item">
+            <h2>
+              {{ item.entryType }}
+            </h2>
+            <div>
+              <div ng-repeat="child in item.selected">
+                <p ng-if="child.brand.trim() !== '' && child.brand !== undefined">
+                  {{ child.name }} ({{ child.brand }})
+                </p>
+                <p ng-if="child.brand.trim() === '' || child.brand === undefined">
+                  {{ child.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div flex="5" layout="row" layout-align="center center">
+              <i class="icon ion-chevron-right items-list-chevron-right"></i>
+          </div>
+        </div>
+        <!-- EVENT - END -->
+
+        <!-- MOOD - START -->
+        <div layout="row" ng-if="item.entryType == 'Mood'" ng-click="itemsList.viewHandler('moodsList',{ _id: item._id })">
+          <div flex="20" layout="row" layout-align="center center">
+            <h4 class="items-list-time">
+              {{item.entryTimestamp | displayTimeFilter}}
+            <h4>
+          </div>
+          <div flex="15" layout="row" layout-align="center center">
+            <a class="icon-circle icon-circle-outline items-list-icon">
+              <i class="icon icon-mood j-icon-smile"></i>
+            </a>
+          </div>
+          <div flex="60" class="item">
+            <h2>
+              {{ item.entryType }}
+            </h2>
+            <div>
+              <p>
+                {{ item.mood }}
+              </p>
+            </div>
+            <!-- Mood -->
+            <!--div>
+              <div ng-repeat="mood in item.moods">
+                <div ng-if="mood.score != 0">
+                  <p>
+                    {{ mood.label }} ({{ mood.score }})
+                  </p>
+                </div>
+              </div>
+            </div-->
+          </div>
+          <div flex="5" layout="row" layout-align="center center">
+              <i class="icon ion-chevron-right items-list-chevron-right"></i>
+          </div>
+        </div>
+        <!-- MOOD - END -->
+
+        <!-- VITALS - START -->
+        <div layout="row" ng-if="item.entryType == 'Vitals'" ng-click="itemsList.viewHandler('vitalsItem',{ _id: item._id })">
+          <div flex="20" layout="row" layout-align="center center">
+            <h4 class="items-list-time">
+              {{item.entryTimestamp | displayTimeFilter}}
+            <h4>
+          </div>
+          <div flex="15" layout="row" layout-align="center center">
+            <a class="icon-circle icon-circle-outline items-list-icon">
+              <i class="icon icon-vitals j-icon-heartbeat"></i>
+            </a>
+          </div>
+          <div flex="60" class="item">
+            <h2>
+              {{ item.entryType }}
+            </h2>
+          </div>
+          <div flex="5" layout="row" layout-align="center center">
+              <i class="icon ion-chevron-right items-list-chevron-right"></i>
+          </div>
+        </div>
+        <!-- VITALS - END -->
+
+      </div>
+    </div>
+  </div>
+  <!--div style="font-size:20px;" ui-sref="entryProfile">Link</div-->
+</ion-content>

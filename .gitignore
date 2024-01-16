@@ -1,0 +1,10 @@
+node_modules/
+settings.json
+settings.json~
+settings-heroku.json
+npm-debug.log
+.DS_Store
+tmp/
+.idea
+package-lock.json
+config

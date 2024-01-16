@@ -1,0 +1,67 @@
+
+<ion-content>
+  <ion-slide-box active-slide="0" pager-click="introSlides.slide(index)" does-continue="true" on-slide-changed="introSlides.slideChanged(index)">
+    <ion-slide>
+      <div class="slide-container green">
+        <div layout="row" layout-align="center center" class="device-container">
+          <img src="img/track-items.png" class="track-items-img"/>
+        </div>
+        <div layout="row" layout-align="center center" class="slide-title-container">
+          <div flex="60">
+            <p class="slide-title">Register a device to get started with tracking</p>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide-container green">
+        <div layout="row" layout-align="center center" class="device-container">
+          <img src="img/device-details.png" class="track-items-img"/>
+        </div>
+        <div layout="row" layout-align="center center" class="slide-title-container">
+          <div flex="60">
+            <p class="slide-title">Customize device details and set a study</p>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide-container green">
+        <div layout="row" layout-align="center center" class="device-container">
+          <img src="img/sync-device.png" class="track-items-img"/>
+        </div>
+        <div layout="row" layout-align="center center" class="slide-title-container">
+          <div flex="60">
+            <p class="slide-title">Sync data from the device and build a report<p>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide-container green">
+        <div layout="row" layout-align="center center" class="device-container">
+          <img src="img/remove-device.png" class="track-items-img"/>
+        </div>
+        <div layout="row" layout-align="center center" class="slide-title-container">
+          <div flex="60">
+            <p class="slide-title">Remove device to reset and add another</p>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+
+  </ion-slide-box>
+
+  <div layout="row" layout-align="center center" class="bottom-buttons">
+    <div flex-offset="5" flex="20" class="skip-button" ng-click="introSlides.goToJournal()">
+      SKIP
+    </div>
+
+    <div flex-offset="65" flex="5" class="next-button" ng-click="introSlides.next()">
+      <i class="icon ion-arrow-right-b next-button-arrow"></i>
+    </div>
+  </div>
+</ion-content>

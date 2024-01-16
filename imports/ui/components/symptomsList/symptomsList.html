@@ -1,0 +1,254 @@
+<ion-content class="j-grey-content-background symptoms-list-content">
+  <ion-list>
+
+    <div class="item item-divider">
+      Time
+    </div>
+
+    <ion-item class="item" ng-class="{true: 'j-border-color-red'}[symptomsList.copy === true]">
+      <div layout="row"
+           class="j-item-entry-cont"
+           ng-model="symptomsList.item.entryTimestamp"
+           mobiscroll-datetime="symptomsList.datetimeSettings"
+           mobiscroll-instance="datetimeInstance">
+        <div flex="10">
+          <i class="ion-ios-clock-outline j-item-entry-icon"></i>
+        </div>
+        <div flex="40" class="j-item-entry-time">
+          {{symptomsList.item.entryTimestamp | displayTimeFilter}}
+        </div>
+        <div flex="50" class="j-item-entry-date">
+          {{symptomsList.item.entryTimestamp | displayDateFilter}}
+        </div>
+      </div>
+    </ion-item>
+
+    <div class="item item-divider" ng-if="symptomsList.surveyData.myState">
+      Symptoms (PRO)
+    </div>
+
+    <ion-item class="item item-label" style="adding-right: 0px; padding-top: 8px; padding-bottom: 8px;" ng-if="symptomsList.surveyData.myState">
+      <div layout="row" layout-align="center center" >
+        <div flex="50" >
+          <span class="input-label" style="font-size: 16px; font-weight: bold;">My State</span>
+        </div>
+        <div flex="50">
+          <input style="text-align: right; font-size: 15px;" type="text" ng-model="symptomsList.surveyData.myState" readonly/>
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item class="item item-label" style="adding-right: 0px; padding-top: 8px; padding-bottom: 8px;" ng-if="symptomsList.item.surveyData.score && symptomsList.surveyData.myState">
+      <div layout="row" layout-align="center center" >
+        <div flex="50" >
+          <span class="input-label" style="font-size: 16px; font-weight: bold;">PRO2 Score</span>
+        </div>
+        <div flex="50">
+          <input style="text-align: right; font-size: 15px;" type="text" ng-model="symptomsList.item.surveyData.score" readonly/>
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item ng-if="symptomsList.surveyData.myState">
+      <div layout="row"
+           layout-align="center center">
+             <div flex="100">
+               <p style="font-size: 16px; font-weight: bold;">My Bowel Movements</p>
+             </div>
+       </div>
+    </ion-item>
+
+    <label class="item item-input item-select" ng-class="{true: 'j-error-box'}[symptomsList.stoolTypeError]" ng-if="symptomsList.surveyData.myState">
+      <label>
+        <div class="input-label" style="min-width: 340px;">Stool Type</div>
+        <select mobiscroll-select="symptomsList.scrollerSettings"
+                placeholder="{{ symptomsList.surveyData.stoolType }}"
+                mobiscroll-instance="stoolType"
+                ng-model="symptomsList.surveyData.stoolType">
+          <option ng-repeat="st in symptomsList.stoolTypeOptions"
+                  value="{{ st.value }}">
+            {{ st.label }}
+          </option>
+        </select>
+      </label>
+    </label>
+
+    <label class="item item-input item-select" ng-if="symptomsList.surveyData.myState !== 'Crohn\'s' && symptomsList.surveyData.myState"  ng-class="{true: 'j-error-box'}[symptomsList.stoolFrequencyError]">
+      <label>
+        <div class="input-label" style="min-width: 340px;">Stool Frequency <br> (Number of liquid & soft stools)</div>
+        <select mobiscroll-select="symptomsList.scrollerSettings"
+                placeholder="{{ symptomsList.surveyData.stoolFrequency }}"
+                mobiscroll-instance="stoolFrequency"
+                ng-model="symptomsList.surveyData.stoolFrequency">
+          <option ng-repeat="sf in symptomsList.stoolFrequencyOptions"
+                  value="{{ sf.value }}">
+            {{ sf.label }}
+          </option>
+        </select>
+      </label>
+    </label>
+
+    <label class="item item-input item-select" ng-if="symptomsList.surveyData.myState === 'Crohn\'s' && symptomsList.surveyData.myState" ng-class="{true: 'j-error-box'}[symptomsList.stoolFrequencyError]">
+      <label>
+        <div class="input-label" style="min-width: 340px;">Stool Frequency <br> (Number of liquid & soft stools)</div>
+        <input ng-model="symptomsList.surveyData.stoolFrequency" class="j-input" mobiscroll-numpad="symptomsList.numpadSettings" mobiscroll-instance="stoolFrequencyNumpad" placeholder="" />
+      </label>
+    </label>
+
+
+    <label class="item item-input item-select" ng-class="{true: 'j-error-box'}[symptomsList.rectalBleedingError]" ng-if="symptomsList.surveyData.myState">
+      <label>
+        <div class="input-label" style="min-width: 340px;">Rectal Bleeding</div>
+        <select mobiscroll-select="symptomsList.scrollerSettings"
+                placeholder="{{ symptomsList.surveyData.rectalBleeding }}"
+                mobiscroll-instance="rectalBleeding"
+                ng-model="symptomsList.surveyData.rectalBleeding">
+          <option ng-repeat="rb in symptomsList.rectalBleedingOptions"
+                  value="{{ rb.value }}">
+            {{ rb.label }}
+          </option>
+        </select>
+      </label>
+    </label>
+
+
+    <ion-item ng-if="symptomsList.surveyData.myState">
+      <div layout="row"
+           layout-align="center center">
+             <div flex="100">
+               <p style="font-size: 16px; font-weight: bold;">My Abdominal Pain</p>
+             </div>
+       </div>
+    </ion-item>
+
+    <label class="item item-input item-select" ng-class="{true: 'j-error-box'}[symptomsList.painLevelError]" ng-if="symptomsList.surveyData.myState">
+      <label>
+        <div class="input-label" style="min-width: 340px;">Pain Level</div>
+        <select mobiscroll-select="symptomsList.scrollerSettings"
+                placeholder="{{ symptomsList.surveyData.painLevel }}"
+                mobiscroll-instance="painLevel"
+                ng-model="symptomsList.surveyData.painLevel">
+          <option ng-repeat="pl in symptomsList.painLevelOptions"
+                  value="{{ pl.value }}">
+            {{ pl.label }}
+          </option>
+        </select>
+      </label>
+    </label>
+
+    <ion-item ng-if="symptomsList.surveyData.myState">
+      <div layout="row"
+           layout-align="center center">
+             <div flex="100">
+               <p style="font-size: 16px; font-weight: bold;">My General Well Being</p>
+             </div>
+       </div>
+    </ion-item>
+
+    <label class="item item-input item-select" ng-class="{true: 'j-error-box'}[symptomsList.iAmFeelingError]" ng-if="symptomsList.surveyData.myState">
+      <label>
+        <div class="input-label" style="min-width: 340px;">I Am Feeling</div>
+        <select mobiscroll-select="symptomsList.scrollerSettings"
+                placeholder="{{ symptomsList.surveyData.iAmFeeling }}"
+                mobiscroll-instance="iAmFeeling"
+                ng-model="symptomsList.surveyData.iAmFeeling">
+          <option ng-repeat="iaf in symptomsList.iAmFeelingOptions"
+                  value="{{ iaf.value }}">
+            {{ iaf.label }}
+          </option>
+        </select>
+      </label>
+    </label>
+
+
+    <div class="item item-divider">
+      Other
+    </div>
+
+    <!-- new symptom -->
+    <ion-item class="item j-item-new-cont">
+      <div layout="row"
+           layout-align="center center"
+           class="j-item-new-button"
+           ng-click="symptomsList.viewHandler('symptomAdd',{'_id': symptomsList._id })">
+        <div flex="100">
+          <i class="icon ion-plus"></i>
+        </div>
+      </div>
+    </ion-item>
+
+    <!-- template -->
+    <div ng-repeat="symptom in symptomsList.viewCacheService.symptomItem.symptoms">
+      <ion-item class="item item-icon-right j-item-symp-cont">
+        <div layout="row" layout-align="center center">
+          <div flex="30" class="j-item-symp-label">
+            {{ symptom.label }}
+          </div>
+          <div flex="50">
+            <div layout="column" class="range-cont">
+              <div class="item range range-assertive">
+                <input type="range" min="0" max="10" ng-model="symptom.score"/>
+              </div>
+              <div layout="row" layout-align="center center" class="range-labels">
+                <div class="range-labels-low" flex> Low </div>
+                <div flex> Med </div>
+                <div class="range-labels-high" flex> High </div>
+              </div>
+            </div>
+          </div>
+          <div flex="10" class="j-item-symp-score">
+            {{ symptom.score }}
+          </div>
+          <div ng-if="symptom.valid === true" flex="10" class="j-item-symp-arrow-cont" ng-click="symptomsList.viewHandler('symptomDetails',{'symptomId': symptom._id, '_id': symptomsList._id })">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+          <div ng-if="symptom.valid === false" flex="10" class="j-item-symp-arrow-cont" ng-click="symptomsList.viewHandler('symptomDetails',{'symptomId': symptom._id, '_id': symptomsList._id, 'warning': true})">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
+      </ion-item>
+    </div>
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item j-notes-cont">
+      <textarea rows="5" ng-model="symptomsList.viewCacheService.symptomItem.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+<ion-footer-bar class="j-button-footer">
+
+  <!-- Existing Item -->
+  <div ng-if="symptomsList._id !== undefined && symptomsList.copy === false"
+       class="j-button-cont j-button-cont-half j-button-cont-red"
+       layout="row" layout-align="center center"
+       ng-click="symptomsList.dropButton()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-ios-trash-outline j-button-icon"></i>
+      Delete
+    </a>
+  </div>
+  <div ng-if="symptomsList._id !== undefined && symptomsList.copy === false"
+       class="j-button-cont j-button-cont-half j-button-cont-green"
+       layout="row" layout-align="center center"
+       ng-click="symptomsList.update(symptomsList.viewCacheService.symptomItem.symptoms)">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Update
+    </a>
+  </div>
+
+  <div ng-if="symptomsList._id === undefined || symptomsList.copy === true"
+       ng-click="symptomsList.submit(symptomsList.viewCacheService.symptomItem.symptoms)"
+       layout="row" layout-align="center center"
+       class="j-button-cont j-button-cont-full j-button-cont-green">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Submit
+    </a>
+  </div>
+</ion-footer-bar>

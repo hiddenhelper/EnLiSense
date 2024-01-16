@@ -1,0 +1,74 @@
+<ion-content class="has-header has-footer">
+  <div ng-if="search.connected">
+    <div class="j-no-res-warn-cont" ng-if="search.entriesCount === 0">
+      <div class="j-no-res-warn-icon-cont">
+        <i class="icon j-icon-search-book-2 j-no-res-warn-icon"></i>
+      </div>
+      <div class="j-no-res-warn-message-cont">
+        <p class="j-no-res-warn-message-header">
+          Search your items
+        </p>
+        <div class="j-no-res-warn-message-txt">
+          <p>
+            <span class="j-no-res-list-num">&#9312;</span> Type in a seach term above to get started.
+          </p>
+          <p>
+            <span class="j-no-res-list-num">&#9313;</span> Click on individual results for more information.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div layout="row" layout-align="center center" ng-if="search.entriesCount !== 0">
+      <div flex="100">
+        <div class="repeated-item" dir-paginate="entry in search.entries | itemsPerPage: search.perPage" total-items="search.entriesCount">
+          <div layout="row" class="result-container"
+                ng-click="search.viewHandler('entryProfile',{_id: entry._id, searchTerm: entry.name, type: entry.type})">
+
+            <!--div layout="column" layout-align="center center" class="circle-contents">
+              <div>
+                <p>
+                <ul class='list-inline'>
+                  <li><div class="btn-round" ng-style="search.btnSmallStyle._{{$index}}"><span>{{ entry.score }}</span></div></li>
+                </ul>
+                </p>
+              </div>
+            </div-->
+
+            <div flex="90" layout="column" layout-align="center start" class="result-contents">
+              <div>
+                <div class="result-item-label">
+                  {{ entry.name }}
+                </div>
+                <div ng-if="entry.brand.trim() !== ''" class="result-item-desc">
+                  ({{ entry.brand }})
+                </div>
+              </div>
+              <!--div class="result-item-last">
+                <div>
+                  <b>Last Entered:</b> Mon Jan 15th, 2016
+                </div>
+              </div>
+              <div class="result-item-entries">
+                <div>
+                  <b>Total Entries:</b> 23
+                </div>
+              </div-->
+            </div>
+
+            <div flex="10" layout="column" layout-align="center center" class="arrow-button">
+              <i class="icon ion-ios-arrow-right"></i>
+            </div>
+
+          </div>
+        </div>
+
+        <div layout="row" layout-align="center center">
+          <dir-pagination-controls class="search-pagination-controls" on-page-change="search.pageChanged(newPageNumber)"></dir-pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-if="!search.connected">
+    <offline-message></offline-message>
+  </div>
+</ion-content>

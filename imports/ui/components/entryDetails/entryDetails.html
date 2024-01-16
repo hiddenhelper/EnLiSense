@@ -1,0 +1,181 @@
+<ion-content class="has-header has-footer j-grey-content-background">
+  <ion-list can-swipe="true">
+
+    <!--div class="item item-divider">
+      Image
+    </div>
+    <ion-item class="item image-container-out" ng-click="entryDetails.takePhoto()" ng-style="entryDetails.imgBackground">
+      <div class="image-container-in" layout="row" layout-align="center center">
+        <i id="cameraIcon" class="ion-camera camera-input" ng-if="!entryDetails.imageData"></i>
+        <img id="cameraImage" class="image-container" ng-src="{{ entryDetails.imageData }}" ng-if="entryDetails.imageData"></img>
+      </div>
+    </ion-item-->
+
+    <div class="item item-divider">
+      Labels
+    </div>
+
+    <label class="item item-input" ng-if="entryDetails.entryStack.type !== 'Medication'">
+      <span class="input-label">Name</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.name">
+    </label>
+    <label class="item item-input" ng-if="entryDetails.entryStack.type !== 'Medication'">
+      <span class="input-label">Brand</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.brand">
+    </label>
+    <label class="item item-input" ng-click="entryDetails.scanBarcode()" ng-if="entryDetails.entryStack.type !== 'Medication'">
+      <span class="input-label">Barcode</span>
+      <div class="val-input barcode-input">{{ entryDetails.entryStack.barcode }}</div>
+    </label>
+    <label class="item item-input" ng-if="entryDetails.entryStack.type !== 'Medication'">
+      <span class="input-label">Category</span>
+      <input type="text"
+             class="val-input"
+             ng-model="entryDetails.entryStack.category"
+             mobiscroll-select="entryDetails.selectScollerSettings"
+             mobiscroll-instance="selectScroller2"/>
+    </label>
+
+    <label class="item item-input" ng-if="entryDetails.entryStack.type === 'Medication'">
+      <span class="input-label">Drug Name</span>
+      <input type="text" ng-model="entryDetails.entryStack.name">
+    </label>
+    <label class="item item-input" ng-if="entryDetails.entryStack.type === 'Medication'">
+      <span class="input-label">Generic Name</span>
+      <input type="text" ng-model="entryDetails.entryStack.genericName">
+    </label>
+    <label class="item item-input" ng-if="entryDetails.entryStack.type === 'Medication'">
+      <span class="input-label">Drug Class</span>
+      <input type="text" ng-model="entryDetails.entryStack.drugClass">
+    </label>
+    <label class="item item-input" ng-if="entryDetails.entryStack.type === 'Medication'">
+      <span class="input-label">Drug Type</span>
+      <input type="text" ng-model="entryDetails.entryStack.drugType">
+    </label>
+
+    <label class="item" ng-if="entryDetails.entryStack.type == 'Medication'" style="padding: 6px 0 5px 16px;" >
+      <div layout="row" layout-align="center center">
+        <span flex="85" class="input-label">Anti-Diarrheal Drug</span>
+        <input flex="15" type="checkbox" ng-model="entryDetails.entryStack.antiDiarrhealDrug" style="max-height: 30px;"/>
+      </div>
+    </label>
+
+    <label class="item item-input">
+      <span class="input-label">Owner</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.ownerDisplay" disabled>
+    </label>
+
+    <div class="item item-divider">
+      Contents
+    </div>
+
+    <!-- new contents -->
+    <ion-item class="item j-item-new-cont">
+      <div layout="row"
+           layout-align="center center"
+           class="j-item-new-button"
+           ng-click="entryDetails.redirectSearchView()">
+        <div flex="100">
+          <i class="icon ion-plus"></i>
+        </div>
+      </div>
+    </ion-item>
+
+    <!-- template -->
+    <div ng-repeat="val in entryDetails.entryStack.selected track by $index">
+      <ion-item class="item j-details-item-cont">
+        <div layout="row" layout-align="center center">
+          <div flex="5">
+          </div>
+          <div flex="85" class="j-details-item-label">
+            {{ val.name }}
+          </div>
+          <div flex="10"
+               class="item-icon-right j-details-item-arrow-cont"
+               ng-click="entryDetails.redirectDetailsView(val._id)">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
+
+        <ion-option-button class="j-details-item-delete-cont" ng-click="entryDetails.removeContentsHandler(val._id)">
+          <div class="j-details-item-delete-row"  layout="row" layout-align="center center">
+            <i class="icon ion-ios-trash-outline j-details-delete-icon" style="vertical-align:middle; margin-left: 10px; margin-right: 10px;">
+            <span class="j-details-delete-label">Delete</span></i>
+          </div>
+        </ion-option-button>
+
+      </ion-item>
+    </div>
+
+    <div class="item item-divider" ng-if="entryDetails.type == 'Food' || entryDetails.type == 'Drink'">
+      Nutrition
+    </div>
+    <label class="item item-input" ng-if="entryDetails.type == 'Food' || entryDetails.type == 'Drink'">
+      <span class="input-label">Calories</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.calories">
+    </label>
+    <label class="item item-input" ng-if="entryDetails.type == 'Food' || entryDetails.type == 'Drink'">
+      <span class="input-label">Fat [g]</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.fat">
+    </label>
+    <label class="item item-input" ng-if="entryDetails.type == 'Food' || entryDetails.type == 'Drink'">
+      <span class="input-label">Cholesterol [mg]</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.cholesterol">
+    </label>
+    <label class="item item-input" ng-if="entryDetails.type == 'Food' || entryDetails.type == 'Drink'">
+      <span class="input-label">Sodium [mg]</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.sodium">
+    </label>
+    <label class="item item-input" ng-if="entryDetails.type == 'Food' || entryDetails.type == 'Drink'">
+      <span class="input-label">Total Carbohydrate [g]</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.totalCarbohydrate">
+    </label>
+    <label class="item item-input" ng-if="entryDetails.type == 'Food' || entryDetails.type == 'Drink'">
+      <span class="input-label">Dietary fiber [g]</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.dietaryFiber">
+    </label>
+    <label class="item item-input" ng-if="entryDetails.type == 'Food' || entryDetails.type == 'Drink'">
+      <span class="input-label">Sugar [g]</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.sugar">
+    </label>
+    <label class="item item-input" ng-if="entryDetails.type == 'Food' || entryDetails.type == 'Drink'">
+      <span class="input-label">Protein [g]</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.protein">
+    </label>
+
+    <div class="item item-divider" ng-if="entryDetails.type == 'Medication'">
+      Dosage
+    </div>
+    <label class="item item-input" ng-if="entryDetails.type == 'Medication'">
+      <span class="input-label">Medication dosage [mg]</span>
+      <input class="val-input" type="text" ng-model="entryDetails.entryStack.dosage">
+    </label>
+
+    <!-- notes -->
+    <div class="item item-divider">
+      Notes
+    </div>
+    <ion-item class="item j-notes-cont">
+      <textarea rows="5" ng-model="entryDetails.entryStack.notes"></textarea>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+<ion-footer-bar class="j-button-footer">
+  <!--div flex="50" class="ddls-ftr-bar-item item-center ddls-delete-button"
+       layout="row" layout-align="center center"
+       ng-click="entryDetails.modalOpen($event, entryDetails.entryStack.name)">
+    <a class="icon-circle icon-circle-outline ddls-entry-dts-button">
+      <i class="icon ion-ios-trash-outline ddls-entry-dts-btn-icon"></i>
+      Delete
+    </a>
+  </div-->
+  <div class="j-button-cont j-button-cont-full j-button-cont-green" layout="row" layout-align="center center"
+        ng-click="entryDetails.save()">
+    <a class="icon-circle icon-circle-outline j-button-text">
+      <i class="icon ion-checkmark j-button-icon"></i>
+      Update
+    </a>
+  </div>
+</ion-footer-bar>
